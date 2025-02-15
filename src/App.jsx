@@ -5,7 +5,8 @@ import EasterEgg from "./components/EasterEgg";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 
 function App() {
