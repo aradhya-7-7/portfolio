@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProjectModal from "./ProjectModal";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { useEffect } from "react";
 
 const Projects = ({ projects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -13,23 +11,10 @@ const Projects = ({ projects }) => {
       setIsMobileDevice(window.innerWidth < 768);
     };
 
-    // Initial check
     checkMobile();
-
-    // Add resize listener
     window.addEventListener("resize", checkMobile);
-
-    // Cleanup
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  const handleClose = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleOpen = () => {
-    setIsModalOpen(true);
-  };
 
   return (
     <>
@@ -58,17 +43,11 @@ const Projects = ({ projects }) => {
       </div>
 
       {selectedProject && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="relative bg-white p-4 rounded-lg shadow-lg max-w-lg w-full">
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-2 right-2 text-red-600 hover:text-red-800 text-lg"
-            >
-              <XMarkIcon className="w-5 h-5" />
-            </button>
-            <ProjectModal onClose={handleClose} isMobile={isMobileDevice} />
-          </div>
-        </div>
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+          isMobile={isMobileDevice}
+        />
       )}
     </>
   );

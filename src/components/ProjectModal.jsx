@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const ProjectModal = ({ project = {}, onClose, isMobile }) => {
+const ProjectModal = ({ project, onClose, isMobile }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-
-  const handleClose = () => {
-    if (typeof onClose === "function") {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -39,9 +22,7 @@ const ProjectModal = ({ project = {}, onClose, isMobile }) => {
         isMobile ? "fixed inset-0" : "relative"
       } bg-white dark:bg-gray-900 max-w-5xl mx-auto flex flex-col md:flex-row`}
     >
-      {/* Image Section with Close Button */}
       <div className="relative flex-1">
-        {/* Enhanced Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 bg-white/50 hover:bg-white/70 rounded-full p-2 transition-all duration-200 transform hover:scale-105"
@@ -67,13 +48,11 @@ const ProjectModal = ({ project = {}, onClose, isMobile }) => {
         />
       </div>
 
-      {/* Details Section */}
       <div className="w-full md:w-96 flex flex-col">
-        {/* Header */}
         <div className="p-4 border-b dark:border-gray-700 flex items-center gap-3">
           <div className="w-8 h-8 rounded-full overflow-hidden">
             <img
-              src={project.authorAvatar || `/default-avatar.png`}
+              src={project.authorAvatar || "/default-avatar.png"}
               alt="profile"
               className="w-full h-full object-cover"
             />
@@ -81,7 +60,6 @@ const ProjectModal = ({ project = {}, onClose, isMobile }) => {
           <span className="font-medium">{project.author}</span>
         </div>
 
-        {/* Content Section */}
         <div className="flex-1 overflow-y-auto p-4">
           <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
           <p className="text-gray-600 dark:text-gray-300">
@@ -89,7 +67,6 @@ const ProjectModal = ({ project = {}, onClose, isMobile }) => {
           </p>
         </div>
 
-        {/* Actions Section */}
         <div className="p-4 border-t dark:border-gray-700">
           <div className="flex justify-between mb-4">
             <div className="flex gap-4">
