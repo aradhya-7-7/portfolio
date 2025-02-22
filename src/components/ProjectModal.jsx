@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ProjectModal = ({ project, onClose, isMobile }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
+  // const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -70,7 +70,7 @@ const ProjectModal = ({ project, onClose, isMobile }) => {
         <div className="p-4 border-t dark:border-gray-700">
           <div className="flex justify-between mb-4">
             <div className="flex gap-4">
-              <button onClick={() => setIsLiked(!isLiked)}>
+              {/* <button onClick={() => setIsLiked(!isLiked)}>
                 <svg
                   className={`w-7 h-7 ${
                     isLiked ? "text-red-500 fill-current" : ""
@@ -86,8 +86,8 @@ const ProjectModal = ({ project, onClose, isMobile }) => {
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                   />
                 </svg>
-              </button>
-              <button onClick={() => setIsSaved(!isSaved)}>
+              </button> */}
+              {/* <button onClick={() => setIsSaved(!isSaved)}>
                 <svg
                   className={`w-7 h-7 ${isSaved ? "fill-current" : ""}`}
                   fill="none"
@@ -101,13 +101,13 @@ const ProjectModal = ({ project, onClose, isMobile }) => {
                     d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                   />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
 
           <div className="mb-4">
-            <p className="font-medium">{project.likes} likes</p>
-            <p className="text-gray-500 text-xs">{project.timestamp}</p>
+            {/* <p className="font-medium">{project.likes} likes</p>
+            <p className="text-gray-500 text-xs">{project.timestamp}</p> */}
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ export const projectsData = [
      title: "Project 1",
      description: "Description...",
      thumbnail: "https://picsum.photos/800/800?random=2",
-     likes: 123,
      technologies: ["React", "Node.js", "MongoDB"],
      links: {
        demo: "https://demo.com",
@@ -16,7 +15,6 @@ export const projectsData = [
      title: "Project 2", 
      description: "Another project description...",
      thumbnail: "https://source.unsplash.com/random/300x300?design",
-     likes: 89,
      technologies: ["Vue", "Firebase"],
      links: {
        demo: "https://demo2.com",
@@ -46,7 +44,6 @@ export const projectsData = [
      id: 1,
      title: "Developer Portfolio",
      content: "hwllo",
-     likes: 234,
      comments: [
        { author: "jane_doe", text: "This looks amazing! 😍" },
        { author: "travel_lover", text: "Perfect weather for the beach!" },
