@@ -11,7 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  // Add this to your existing state
+  // Add this to your existing state variable
 
 
 
