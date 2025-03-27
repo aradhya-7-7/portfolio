@@ -34,7 +34,7 @@ const Projects = ({ projects }) => {
               <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-4 sm:gap-6">
                 <span className="flex items-center text-sm sm:text-base">
                   <i className="far fa-heart mr-1 sm:mr-2"></i>
-                  {/* {project.likes} */}
+                  {project.likes}
                 </span>
               </div>
             </div>
