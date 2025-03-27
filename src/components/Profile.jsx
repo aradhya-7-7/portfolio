@@ -13,8 +13,11 @@ import Blogs from "./Blogs";
 import Experience from "./Experience";
 import { FaGithub } from "react-icons/fa";
 import { SiCodechef, SiLeetcode } from "react-icons/si";
+import { projectsData, experienceData, blogsData } from "../Data/data";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("projects");
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [showResume, setShowResume] = useState(false);
@@ -29,73 +32,73 @@ const Profile = () => {
   });
 
   const username = "aradhya-7-7";
-  const projectsData = [
-    {
-      id: 1,
-      title: "Project 1",
-      description: "Description...",
-      thumbnail: "https://picsum.photos/800/800?random=2",
-      likes: 123,
-      technologies: ["React", "Node.js", "MongoDB"],
-      links: {
-        demo: "https://demo.com",
-        github: "https://picsum.photos/800/800?random=2",
-      },
-    },
-    {
-      id: 2,
-      title: "Project 2",
-      description: "Another project description...",
-      thumbnail: "https://source.unsplash.com/random/300x300?design",
-      likes: 89,
-      technologies: ["Vue", "Firebase"],
-      links: {
-        demo: "https://demo2.com",
-        github: "https://github.com/project2",
-      },
-    },
-  ];
+  // const projectsData = [
+  //   {
+  //     id: 1,
+  //     title: "Project 1",
+  //     description: "Description...",
+  //     thumbnail: "https://picsum.photos/800/800?random=2",
+  //     likes: 123,
+  //     technologies: ["React", "Node.js", "MongoDB"],
+  //     links: {
+  //       demo: "https://demo.com",
+  //       github: "https://picsum.photos/800/800?random=2",
+  //     },
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Project 2",
+  //     description: "Another project description...",
+  //     thumbnail: "https://source.unsplash.com/random/300x300?design",
+  //     likes: 89,
+  //     technologies: ["Vue", "Firebase"],
+  //     links: {
+  //       demo: "https://demo2.com",
+  //       github: "https://github.com/project2",
+  //     },
+  //   },
+  // ];
 
-  const experienceData = [
-    {
-      id: 1,
-      company: "All India Diploma Engineers And Officials Association (AIDEOA)",
-      title: "Full Stack Developer Intern",
-      duration: "Dec 2024 - Present",
-      description: [
-        "Developing responsive web applications using React.js and Node.js.",
-        "Integrating RESTful APIs for seamless client-server communication.",
-        "Managing and optimizing PostgreSQL databases for scalability.",
-        "Developing detailed, technical documentation for frontend and backend codebases.",
-        "Collaborating with cross-functional teams in an agile environment.",
-      ],
-    },
-  ];
+  // const experienceData = [
+  //   {
+  //     id: 1,
+  //     company: "All India Diploma Engineers And Officials Association (AIDEOA)",
+  //     title: "💻 Full Stack Developer Intern",
+  //     duration: "📅Dec 2024 - Present",
+  //     description: [
+  //       "Developing responsive web applications using React.js and Node.js. 🚀",
+  //       "Integrating RESTful APIs for seamless client-server communication. 🔗",
+  //       "Managing and optimizing PostgreSQL databases for scalability. 🗄️",
+  //       "Developing detailed, technical documentation for frontend and backend codebases. 📝",
+  //       "Collaborating with cross-functional teams in an agile environment. 🤝",
+  //     ],
+  //   },
+  // ];
 
-  const blogsData = [
-    {
-      id: 1,
-      title: "Developer Portfolio",
-      content: "hwllo",
-      likes: 234,
-      comments: [
-        { author: "jane_doe", text: "This looks amazing! 😍" },
-        { author: "travel_lover", text: "Perfect weather for the beach!" },
-      ],
-      images: [
-        "https://picsum.photos/800/800?random=1",
-        "https://picsum.photos/800/800?random=2",
-        "https://picsum.photos/800/800?random=3",
-      ],
-      thumbnail: "https://picsum.photos/800/800?random=1",
-      author: "johndoe",
-      timestamp: "2 HOURS AGO",
-    },
-    
-  ];
+  // const blogsData = [
+  //   {
+  //     id: 1,
+  //     title: "Developer Portfolio",
+  //     content: "hwllo",
+  //     likes: 234,
+  //     comments: [
+  //       { author: "jane_doe", text: "This looks amazing! 😍" },
+  //       { author: "travel_lover", text: "Perfect weather for the beach!" },
+  //     ],
+  //     images: [
+  //       "https://picsum.photos/800/800?random=1",
+  //       "https://picsum.photos/800/800?random=2",
+  //       "https://picsum.photos/800/800?random=3",
+  //     ],
+  //     thumbnail: "https://picsum.photos/800/800?random=1",
+  //     author: "johndoe",
+  //     timestamp: "2 HOURS AGO",
+  //   },
+
+  // ];
 
   const profileData = {
-    username: "AradhyaSrivastava",
+    username: "Aradhya Srivastava",
     title: "Full Stack Developer / Problem Solver / Technical Writer",
     bio: "🚀 Software Engineer | DSA & Web Dev Enthusiast 💻 | Proficient in React, Node.js, JS 🤝 Passionate Problem-Solver | 📚 Always Learning & Innovating! 🌐",
     website: "<LinkedIn/>",
@@ -136,7 +139,7 @@ const Profile = () => {
   }, [username]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 sm:px-6 lg:px-8">
       <CustomCursor />
 
       {/* Theme Toggle */}
@@ -152,13 +155,13 @@ const Profile = () => {
       </button>
 
       {/* Profile Header */}
-      <div className="max-w-4xl mx-auto px-4 py-10">
+      <div className="max-w-4xl mx-auto py-6 sm:py-14">
         {/* Profile Header */}
-        <div className="flex flex-col sm:flex-row gap-8">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
           {/* Profile Picture */}
           <div className="flex justify-center sm:justify-start">
             <div className="relative group cursor-pointer">
-              <div className="instagram-gradient-border sm:w-40 sm:h-40 transition-transform duration-300 hover:scale-110">
+              <div className="instagram-gradient-border w-32 h-32 sm:w-40 sm:h-40">
                 <div className="p-[3px] rounded-full bg-white dark:bg-black">
                   <img src={photo} alt="Profile" className="w-full h-full" />
                 </div>
@@ -167,13 +170,13 @@ const Profile = () => {
           </div>
 
           {/* Profile Info */}
-          <div className="flex-1">
+          <div className="flex-1 space-y-4 sm:space-y-6 px-2 sm:px-4">
             {/* Username and Actions */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-              <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <h1 className="text-lg sm:text-xl font-semibold">
                 {profileData.username}
               </h1>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                 <button
                   onClick={() => setShowResume(true)}
                   className="px-6 py-1.5 bg-[#0095F6] text-white font-semibold rounded-lg hover:bg-[#1877F2] transition"
@@ -333,16 +336,15 @@ const Profile = () => {
                 </a>
               </div>
               <div>
-
-              <a
-                href={"https://www.linkedin.com/in/aradhya08oc01/"}
-                className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href={"https://www.linkedin.com/in/aradhya08oc01/"}
+                  className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                {profileData.website}
-              </a>
-                </div>
+                  {profileData.website}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -429,7 +431,6 @@ const Profile = () => {
               <Experience experiences={experienceData} />
             )}
             {activeTab === "Blogs" && <Blogs blogs={blogsData} />}
-            {activeTab === "admin" && <AdminPanel />}
             {/* Your other tab contents */}
           </div>
         </div>

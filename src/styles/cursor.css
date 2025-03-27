@@ -1,8 +1,9 @@
+/* Global cursor settings */
 * {
-   cursor: none;
- }
- 
- /* Add these specific overrides */
+  cursor: none;
+}
+
+/* Override default interactive elements */
 button, 
 a, 
 input[type="button"], 
@@ -12,98 +13,88 @@ input[type="submit"],
   cursor: none !important;
 }
 
-/* Rest of your cursor styles remain the same */
+/* Gear-shaped custom cursor */
+.custom-cursor {
+  width: 32px;
+  height: 32px;
+  background: url('gear.svg') center/cover no-repeat;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  animation: rotate 4s linear infinite;
+}
+
+/* Hover effect - rotates faster */
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  animation: rotate 1s linear infinite;
+}
+
+/* Click effect */
+.custom-cursor.clicking {
+  transform: translate(-50%, -50%) scale(0.9);
+  animation: rotate 0.5s linear infinite;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Trail Effect */
+.cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 20, 147, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Ripple Click Effect */
+.ripple {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 20, 147, 0.5);
+  border-radius: 50%;
+  transform: scale(1);
+  opacity: 1;
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
 
 
- .custom-cursor {
-   width: 32px;
-   height: 32px;
-   border: 2px solid #3b82f6;
-   border-radius: 50%;
-   position: fixed;
-   pointer-events: none;
-   z-index: 9999;
-   transform: translate(-50%, -50%);
-   transition: all 0.2s ease;
- }
- 
- .custom-cursor::before,
- .custom-cursor::after {
-   content: '';
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   border: 2px solid #3b82f6;
-   border-radius: 50%;
-   opacity: 0.5;
-   animation: pulse 2s infinite;
- }
- 
- .custom-cursor::before {
-   animation-delay: 0.5s;
- }
- 
- .cursor-dot {
-   width: 6px;
-   height: 6px;
-   background: #3b82f6;
-   border-radius: 50%;
-   position: fixed;
-   pointer-events: none;
-   z-index: 9999;
-   transform: translate(-50%, -50%);
-   transition: all 0.1s ease;
- }
- 
- /* Tech-inspired hover effect */
- .custom-cursor.hover {
-   width: 48px;
-   height: 48px;
-   border-style: dashed;
-   animation: rotate 2s linear infinite;
-   background: rgba(59, 130, 246, 0.1);
- }
- 
- /* Click animation */
- .custom-cursor.clicking {
-   transform: translate(-50%, -50%) scale(0.8);
-   background: rgba(59, 130, 246, 0.3);
-   border-style: solid;
- }
- 
- .cursor-dot.clicking {
-   transform: translate(-50%, -50%) scale(1.5);
-   background: #60a5fa;
- }
- 
- @keyframes pulse {
-   0% {
-     transform: scale(1);
-     opacity: 0.5;
-   }
-   100% {
-     transform: scale(1.5);
-     opacity: 0;
-   }
- }
- 
- @keyframes rotate {
-   from {
-     transform: translate(-50%, -50%) rotate(0deg);
-   }
-   to {
-     transform: translate(-50%, -50%) rotate(360deg);
-   }
- }
- 
- /* Dark mode enhancements */
- .dark .custom-cursor {
-   border-color: #60a5fa;
-   box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
- }
- 
- .dark .cursor-dot {
-   background: #60a5fa;
-   box-shadow: 0 0 8px #60a5fa;
- }
- 
+
+/* Dark mode enhancements - Neon Pink Glow */
+.dark .custom-cursor {
+  filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 20, 147, 0.8)); /* Neon Pink */
+}
+
+/* Light mode enhancements - Black Glow */
+.light .custom-cursor {
+  filter: brightness(1) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); /* Subtle Black Glow */
+}
