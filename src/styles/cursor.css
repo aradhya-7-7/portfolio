@@ -1,0 +1,100 @@
+/* Global cursor settings */
+* {
+  cursor: none;
+}
+
+/* Override default interactive elements */
+button, 
+a, 
+input[type="button"], 
+input[type="submit"],
+[role="button"],
+.clickable {
+  cursor: none !important;
+}
+
+/* Gear-shaped custom cursor */
+.custom-cursor {
+  width: 32px;
+  height: 32px;
+  background: url('gear.svg') center/cover no-repeat;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  animation: rotate 4s linear infinite;
+}
+
+/* Hover effect - rotates faster */
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  animation: rotate 1s linear infinite;
+}
+
+/* Click effect */
+.custom-cursor.clicking {
+  transform: translate(-50%, -50%) scale(0.9);
+  animation: rotate 0.5s linear infinite;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Trail Effect */
+.cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 20, 147, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Ripple Click Effect */
+.ripple {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 20, 147, 0.5);
+  border-radius: 50%;
+  transform: scale(1);
+  opacity: 1;
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+
+
+/* Dark mode enhancements - Neon Pink Glow */
+.dark .custom-cursor {
+  filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 20, 147, 0.8)); /* Neon Pink */
+}
+
+/* Light mode enhancements - Black Glow */
+.light .custom-cursor {
+  filter: brightness(1) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); /* Subtle Black Glow */
+}
