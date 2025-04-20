@@ -24,6 +24,7 @@ const Profile = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [stats, setStats] = useState({
     pullRequests: 0,
@@ -105,6 +106,22 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    // Check if the device is mobile or touchscreen
+    const checkIfMobile = () => {
+      const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+      setIsMobile(isTouchDevice);
+    };
+
+    checkIfMobile(); // On initial load
+    window.addEventListener("resize", checkIfMobile); // Recheck on resize
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile); // Clean up
+    };
+  }, []);
+
+
+  useEffect(() => {
     const fetchGitHubStats = async () => {
       try {
         const reposRes = await fetch(
@@ -140,7 +157,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 sm:px-6 lg:px-8">
-      <CustomCursor />
+      {!isMobile && <CustomCursor />}
 
       {/* Theme Toggle */}
       <button
