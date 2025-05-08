@@ -1,26 +1,26 @@
 export const projectsData = [
-  {
-    id: 1,
-    title: "Live Auction System",
-    description: "A real-time auction platform powered by WebSockets, enabling users to bid on items in a fast and dynamic environment with instant updates.",
-    thumbnail: "/posts/1.png",
-    technologies: ["React", "Node.js", "WebSocket", "MongoDB"],
-    links: {
-      demo: "https://live-auction-demo.com",
-      github: "https://github.com/yourusername/live-auction-system",
-    },
-  },
-  {
-    id: 2,
-    title: "Aetherly - Ecommerce Website",
-    description: "A fully-featured ecommerce website with product listings, search, cart, payment integration, and admin panel for inventory management.",
-    thumbnail: "/posts/2.png",
-    technologies: ["Next.js", "TailwindCSS", "Stripe", "MongoDB"],
-    links: {
-      demo: "https://aetherly.com",
-      github: "https://github.com/yourusername/aetherly-ecommerce",
-    },
-  },
+  // {
+  //   id: 1,
+  //   title: "Live Auction System",
+  //   description: "A real-time auction platform powered by WebSockets, enabling users to bid on items in a fast and dynamic environment with instant updates.",
+  //   thumbnail: "/posts/1.png",
+  //   technologies: ["React", "Node.js", "WebSocket", "MongoDB"],
+  //   links: {
+  //     demo: "https://live-auction-demo.com",
+  //     github: "https://github.com/yourusername/live-auction-system",
+  //   },
+  // },
+  // {
+  //   id: 2,
+  //   title: "Aetherly - Ecommerce Website",
+  //   description: "A fully-featured ecommerce website with product listings, search, cart, payment integration, and admin panel for inventory management.",
+  //   thumbnail: "/posts/2.png",
+  //   technologies: ["Next.js", "TailwindCSS", "Stripe", "MongoDB"],
+  //   links: {
+  //     demo: "https://aetherly.com",
+  //     github: "https://github.com/yourusername/aetherly-ecommerce",
+  //   },
+  // },
   {
     id: 3,
     title: "Portfolio",
@@ -29,29 +29,29 @@ export const projectsData = [
     technologies: ["React", "Framer Motion", "TailwindCSS"],
     links: {
       demo: "https://yourportfolio.com",
-      github: "https://github.com/yourusername/portfolio",
+      github: "https://github.com/aradhya-7-7/portfolio",
     },
   },
   {
     id: 4,
     title: "DevTools - Swiss Army Knife for Coders",
-    description: "https://picsum.photos/200",
+    description: "DevTools – Swiss Army Knife for Coders is a modern, all-in-one toolkit designed to streamline a developer’s workflow. Packed with essential utilities like formatters, converters, generators, API testers, and design helpers, it offers a clean and responsive interface to boost productivity and simplify everyday coding tasks.",
     thumbnail: "/posts/4.png",
-    technologies: ["React", "Vite", "TailwindCSS", "Framer Motion"],
+    technologies: ["React", "Vite", "TailwindCSS"],
     links: {
-      demo: "https://devtools.pro",
-      github: "https://github.com/yourusername/devtools",
+      demo: "https://devtool-kit.netlify.app/",
+      github: "https://github.com/aradhya-7-7/dev-toolkit",
     },
   },
   {
     id: 5,
     title: "Help the Fella",
-    description: "https://picsum.photos/200",
+    description: "A friendly hub where gamers help gamers! Whether you’re stuck in a game, puzzled by eSports settings, or just need quick advice, our community’s got your back. No question is too noob—just ask, fella!",
     thumbnail: "/posts/5.png",
-    technologies: ["React", "Firebase", "Google Maps API"],
+    technologies: ["React", "Firebase"],
     links: {
-      demo: "https://helpthefella.org",
-      github: "https://github.com/yourusername/help-the-fella",
+      demo: "https://help-the-fella.vercel.app/",
+      github: "https://github.com/aradhya-7-7/Help-The-Fella",
     },
   }
 ];

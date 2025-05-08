@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { FaBars, FaTimes } from "react-icons/fa";
 import photo from "../assets/photo.jpeg";
 import ResumeViewer from "./ResumeViewer";
 import ContactForm from "./ContactForm";
@@ -12,7 +13,6 @@ import Projects from "./Projects";
 import Blogs from "./Blogs";
 import Experience from "./Experience";
 import { FaGithub } from "react-icons/fa";
-import { SiCodechef, SiLeetcode } from "react-icons/si";
 import { projectsData, experienceData, blogsData } from "../Data/data";
 import { useNavigate } from "react-router-dom";
 
@@ -26,77 +26,14 @@ const Profile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [stats, setStats] = useState({
     pullRequests: 0,
     contributions: 0,
     repositories: 0,
   });
-
+  
   const username = "aradhya-7-7";
-  // const projectsData = [
-  //   {
-  //     id: 1,
-  //     title: "Project 1",
-  //     description: "Description...",
-  //     thumbnail: "https://picsum.photos/800/800?random=2",
-  //     likes: 123,
-  //     technologies: ["React", "Node.js", "MongoDB"],
-  //     links: {
-  //       demo: "https://demo.com",
-  //       github: "https://picsum.photos/800/800?random=2",
-  //     },
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Project 2",
-  //     description: "Another project description...",
-  //     thumbnail: "https://source.unsplash.com/random/300x300?design",
-  //     likes: 89,
-  //     technologies: ["Vue", "Firebase"],
-  //     links: {
-  //       demo: "https://demo2.com",
-  //       github: "https://github.com/project2",
-  //     },
-  //   },
-  // ];
-
-  // const experienceData = [
-  //   {
-  //     id: 1,
-  //     company: "All India Diploma Engineers And Officials Association (AIDEOA)",
-  //     title: "💻 Full Stack Developer Intern",
-  //     duration: "📅Dec 2024 - Present",
-  //     description: [
-  //       "Developing responsive web applications using React.js and Node.js. 🚀",
-  //       "Integrating RESTful APIs for seamless client-server communication. 🔗",
-  //       "Managing and optimizing PostgreSQL databases for scalability. 🗄️",
-  //       "Developing detailed, technical documentation for frontend and backend codebases. 📝",
-  //       "Collaborating with cross-functional teams in an agile environment. 🤝",
-  //     ],
-  //   },
-  // ];
-
-  // const blogsData = [
-  //   {
-  //     id: 1,
-  //     title: "Developer Portfolio",
-  //     content: "hwllo",
-  //     likes: 234,
-  //     comments: [
-  //       { author: "jane_doe", text: "This looks amazing! 😍" },
-  //       { author: "travel_lover", text: "Perfect weather for the beach!" },
-  //     ],
-  //     images: [
-  //       "https://picsum.photos/800/800?random=1",
-  //       "https://picsum.photos/800/800?random=2",
-  //       "https://picsum.photos/800/800?random=3",
-  //     ],
-  //     thumbnail: "https://picsum.photos/800/800?random=1",
-  //     author: "johndoe",
-  //     timestamp: "2 HOURS AGO",
-  //   },
-
-  // ];
 
   const profileData = {
     username: "Aradhya Srivastava",
@@ -108,18 +45,19 @@ const Profile = () => {
   useEffect(() => {
     // Check if the device is mobile or touchscreen
     const checkIfMobile = () => {
-      const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+      const isTouchDevice = 
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth < 768;
       setIsMobile(isTouchDevice);
     };
-
+    
     checkIfMobile(); // On initial load
     window.addEventListener("resize", checkIfMobile); // Recheck on resize
-
+    
     return () => {
       window.removeEventListener("resize", checkIfMobile); // Clean up
     };
   }, []);
-
 
   useEffect(() => {
     const fetchGitHubStats = async () => {
@@ -128,12 +66,12 @@ const Profile = () => {
           `https://api.github.com/users/${username}`
         );
         const reposData = await reposRes.json();
-
+        
         const prsRes = await fetch(
           `https://api.github.com/search/issues?q=author:${username}+type:pr`
         );
         const prsData = await prsRes.json();
-
+        
         const commitsRes = await fetch(
           `https://api.github.com/search/commits?q=author:${username}`,
           {
@@ -141,7 +79,7 @@ const Profile = () => {
           }
         );
         const commitsData = await commitsRes.json();
-
+        
         setStats({
           pullRequests: prsData.total_count || 0,
           contributions: commitsData.total_count || 0,
@@ -156,13 +94,14 @@ const Profile = () => {
   }, [username]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-3 sm:px-6 lg:px-8 overflow-x-hidden">
       {!isMobile && <CustomCursor />}
-
+      
       {/* Theme Toggle */}
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="fixed top-2 right-2 sm:top-4 sm:right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 z-10 hover:bg-gray-200 dark:hover:bg-gray-700"
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
       >
         {darkMode ? (
           <SunIcon className="h-5 w-5" />
@@ -171,38 +110,129 @@ const Profile = () => {
         )}
       </button>
 
+      {/* Mobile Navigation Toggle */}
+      {isMobile && (
+        <button
+          onClick={() => setMobileNavOpen(!mobileNavOpen)}
+          className="fixed top-2 left-2 z-50 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
+          aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+        >
+          {mobileNavOpen ? (
+            <FaTimes className="h-5 w-5" />
+          ) : (
+            <FaBars className="h-5 w-5" />
+          )}
+        </button>
+      )}
+
+      {/* Mobile Navigation Menu */}
+      {isMobile && mobileNavOpen && (
+        <div className="fixed inset-0 bg-white dark:bg-black z-40 flex flex-col items-center justify-center space-y-6 p-4">
+          <button
+            onClick={() => {
+              setActiveTab("projects");
+              setMobileNavOpen(false);
+            }}
+            className={`text-xl font-medium ${
+              activeTab === "projects" ? "text-blue-500" : ""
+            }`}
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("Experience");
+              setMobileNavOpen(false);
+            }}
+            className={`text-xl font-medium ${
+              activeTab === "Experience" ? "text-blue-500" : ""
+            }`}
+          >
+            Experience
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("Blogs");
+              setMobileNavOpen(false);
+            }}
+            className={`text-xl font-medium ${
+              activeTab === "Blogs" ? "text-blue-500" : ""
+            }`}
+          >
+            Blogs
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("About");
+              setMobileNavOpen(false);
+            }}
+            className={`text-xl font-medium ${
+              activeTab === "About" ? "text-blue-500" : ""
+            }`}
+          >
+            About
+          </button>
+          <div className="mt-6 flex space-x-4">
+            <button
+              onClick={() => {
+                setShowResume(true);
+                setMobileNavOpen(false);
+              }}
+              className="px-4 py-2 bg-[#0095F6] text-white font-semibold rounded-lg"
+            >
+              Resume
+            </button>
+            <button
+              onClick={() => {
+                setShowContactForm(true);
+                setMobileNavOpen(false);
+              }}
+              className="px-4 py-2 bg-gray-100 dark:bg-gray-800 font-semibold rounded-lg"
+            >
+              Contact
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Profile Header */}
-      <div className="max-w-4xl mx-auto py-6 sm:py-14">
+      <div className="max-w-4xl mx-auto py-6 sm:py-10 md:py-14 mt-8 sm:mt-0">
         {/* Profile Header */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center sm:items-start">
           {/* Profile Picture */}
           <div className="flex justify-center sm:justify-start">
             <div className="relative group cursor-pointer">
-              <div className="instagram-gradient-border w-32 h-32 sm:w-40 sm:h-40">
+              <div className="instagram-gradient-border w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40">
                 <div className="p-[3px] rounded-full bg-white dark:bg-black">
-                  <img src={photo} alt="Profile" className="w-full h-full" />
+                  <img 
+                    src={photo} 
+                    alt="Profile" 
+                    className="w-full h-full rounded-full object-cover"
+                  />
                 </div>
               </div>
             </div>
           </div>
-
+          
           {/* Profile Info */}
-          <div className="flex-1 space-y-4 sm:space-y-6 px-2 sm:px-4">
+          <div className="flex-1 space-y-3 sm:space-y-4 px-2 sm:px-4 text-center sm:text-left">
             {/* Username and Actions */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
               <h1 className="text-lg sm:text-xl font-semibold">
                 {profileData.username}
               </h1>
-              <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+              
+              {/* Action buttons - hidden on mobile, shown in desktop */}
+              <div className="hidden sm:flex flex-wrap justify-center sm:justify-start gap-2">
                 <button
                   onClick={() => setShowResume(true)}
-                  className="px-6 py-1.5 bg-[#0095F6] text-white font-semibold rounded-lg hover:bg-[#1877F2] transition"
+                  className="px-4 sm:px-6 py-1.5 bg-[#0095F6] text-white font-semibold rounded-lg hover:bg-[#1877F2] transition"
                 >
                   Download Resume
                 </button>
                 <button
                   onClick={() => setShowContactForm(true)}
-                  className="px-6 py-1.5 bg-gray-100 dark:bg-gray-800 font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  className="px-4 sm:px-6 py-1.5 bg-gray-100 dark:bg-gray-800 font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                 >
                   Contact Me
                 </button>
@@ -228,64 +258,62 @@ const Profile = () => {
                 </button>
               </div>
             </div>
-
+            
             {/* Stats */}
-            <div className="flex gap-8 mb-6">
+            <div className="flex justify-center sm:justify-start gap-4 sm:gap-8 mb-3 sm:mb-6">
               <div className="text-center sm:text-left">
-                <span className="font-semibold text-lg text-gray-900 dark:text-white">
+                <span className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white">
                   {stats.repositories}
                 </span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   repositories
                 </p>
               </div>
-              <div className="font-semibold text-lg text-gray-900 dark:text-white">
-                <span className="font-semibold text-lg">
+              <div className="text-center sm:text-left">
+                <span className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white">
                   {stats.pullRequests}
                 </span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   pull requests
                 </p>
               </div>
-              <div className="font-semibold text-lg text-gray-900 dark:text-white">
-                <span className="font-semibold text-lg">
+              <div className="text-center sm:text-left">
+                <span className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white">
                   {stats.contributions}
                 </span>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   contributions
                 </p>
               </div>
             </div>
-
+            
             {/* Bio */}
             <div className="space-y-2">
-              <h2 className="font-semibold text-gray-900 dark:text-white">
+              <h2 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                 {profileData.title}
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                 {profileData.bio}
               </p>
-
-              <div
-                className="coding-platforms 
-  flex flex-wrap items-center justify-center sm:justify-start gap-3 my-4 p-3
-  backdrop-blur-lg
-  dark:bg-gray-800/30 bg-white/30
-  dark:border-gray-700/30 border-white/30
-  border
-  rounded-3xl
-  shadow-xl
-  dark:shadow-gray-900/30
-  transition-all duration-300 ease-in-out
-  hover:bg-white/40 dark:hover:bg-gray-800/40
-  hover:scale-[1.02]
-  hover:shadow-2xl
-  dark:hover:shadow-gray-900/40
-  group
-  max-w-xl
-  mx-0
-  w-fit"
-              >
+              
+              {/* Action buttons for mobile */}
+              <div className="flex sm:hidden justify-center gap-2 my-3">
+                <button
+                  onClick={() => setShowResume(true)}
+                  className="px-4 py-1.5 bg-[#0095F6] text-white text-sm font-semibold rounded-lg"
+                >
+                  Resume
+                </button>
+                <button
+                  onClick={() => setShowContactForm(true)}
+                  className="px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-sm font-semibold rounded-lg"
+                >
+                  Contact
+                </button>
+              </div>
+              
+              {/* Coding platforms */}
+              <div className="coding-platforms flex flex-wrap items-center justify-center sm:justify-start gap-3 my-4 p-3 backdrop-blur-lg dark:bg-gray-800/30 bg-white/30 dark:border-gray-700/30 border-white/30 border rounded-3xl shadow-xl dark:shadow-gray-900/30 transition-all duration-300 ease-in-out hover:bg-white/40 dark:hover:bg-gray-800/40 hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-gray-900/40 group max-w-xl mx-auto sm:mx-0 w-fit">
                 {/* GitHub Logo */}
                 <a
                   href="https://github.com/aradhya-7-7"
@@ -294,177 +322,185 @@ const Profile = () => {
                   className="transform hover:scale-110 transition-transform duration-300"
                 >
                   <FaGithub
-                    className="text-2xl 
-      dark:text-gray-200 text-gray-800 
-      transition-colors duration-300
-      group-hover:text-gray-600 dark:group-hover:text-gray-400"
+                    className="text-2xl dark:text-gray-200 text-gray-800 transition-colors duration-300 group-hover:text-gray-600 dark:group-hover:text-gray-400"
                   />
                 </a>
-
                 {/* CodeChef Logo */}
                 <a
-                  href="https://www.codechef.com/users/aradhya77777"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform hover:scale-110 transition-transform duration-300"
-                >
-                  <img
-                    src="/codechef.png"
-                    alt="CodeChef"
-                    className="w-7 h-7 object-contain 
-        filter dark:brightness-90 
-        transition-all duration-300
-        group-hover:brightness-110 dark:group-hover:brightness-100"
-                  />
-                </a>
-
-                {/* LeetCode Logo */}
-                <a
-                  href="https://leetcode.com/u/aradhya610/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform hover:scale-110 transition-transform duration-300"
-                >
-                  <img
-                    src="/leetcode.png"
-                    alt="LeetCode"
-                    className="w-7 h-7 object-contain 
-        filter dark:brightness-90 
-        transition-all duration-300
-        group-hover:brightness-110 dark:group-hover:brightness-100"
-                  />
-                </a>
-
-                {/* Coding Ninja Logo */}
-                <a
-                  href="https://www.naukri.com/code360/profile/aradhya7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform hover:scale-110 transition-transform duration-300"
-                >
-                  <img
-                    src="/coding_ninja.png"
-                    alt="Coding Ninja"
-                    className="w-7 h-7 object-contain 
-        filter dark:brightness-90 
-        transition-all duration-300
-        group-hover:brightness-110 dark:group-hover:brightness-100"
-                  />
-                </a>
-              </div>
-              <div>
-                <a
-                  href={"https://www.linkedin.com/in/aradhya08oc01/"}
-                  className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {profileData.website}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Story Highlights */}
-        <FloatingHighlights />
-
-        {/* Content Tabs */}
-        <div className="mt-6 border-t dark:border-gray-700">
-          <div className="flex justify-around sm:justify-center sm:gap-12">
-            <button
-              className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
-                activeTab === "projects"
-                  ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
-                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              }`}
-              onClick={() => setActiveTab("projects")}
-            >
-              <div className="flex items-center gap-2">
-                {/* <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  />
-                </svg> */}
-                Projects
-              </div>
-            </button>
-
-            <button
-              className={`py-3 text-sm tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition ${
-                activeTab === "Experience"
-                  ? "border-t-2 border-gray-900 dark:border-white"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("Experience")}
-            >
-              Experience
-            </button>
-            <button
-              className={`py-3 text-sm font-medium tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition flex items-center gap-2 ${
-                activeTab === "Blogs"
-                  ? "border-t-2 border-gray-900 dark:border-white"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("Blogs")}
-            >
-              Blogs
-            </button>
-
-            <button
-              className={`py-3 text-sm tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition ${
-                activeTab === "About"
-                  ? "border-t-2 border-gray-900 dark:border-white"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("About")}
-            >
-              About
-            </button>
-          </div>
-
-          {/* Posts Grid */}
-
-          {/* <div className="grid grid-cols-3 gap-px mt-0.5">
-            {[...Array(9)].map((_, i) => (
-              <div
-                key={i}
-                className="aspect-square bg-gray-100 dark:bg-gray-800 hover:opacity-90 transition cursor-pointer"
-              />
-            ))}
-          </div> */}
-          <div className="mt-6">
-            {activeTab === "About" && <About />}
-            {activeTab === "projects" && <Projects projects={projectsData} />}
-            {activeTab === "Experience" && (
-              <Experience experiences={experienceData} />
-            )}
-            {activeTab === "Blogs" && <Blogs blogs={blogsData} />}
-            {/* Your other tab contents */}
-          </div>
-        </div>
-      </div>
-
-      {/* Modals */}
-      <SocialMenu //⚠️social links have to be added
-        isOpen={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        position={menuPosition}
-      />
-      {showResume && <ResumeViewer onClose={() => setShowResume(false)} />}
-      {showContactForm && (
-        <ContactForm onClose={() => setShowContactForm(false)} />
-      )}
-    </div>
-  );
-};
-
-export default Profile;
+                                    href="https://www.codechef.com/users/aradhya77777"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="transform hover:scale-110 transition-transform duration-300"
+                                  >
+                                    <img
+                                      src="/codechef.png"
+                                      alt="CodeChef"
+                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                                    />
+                                  </a>
+                                  {/* LeetCode Logo */}
+                                  <a
+                                    href="https://leetcode.com/u/aradhya610/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="transform hover:scale-110 transition-transform duration-300"
+                                  >
+                                    <img
+                                      src="/leetcode.png"
+                                      alt="LeetCode"
+                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                                    />
+                                  </a>
+                                  {/* Coding Ninja Logo */}
+                                  <a
+                                    href="https://www.naukri.com/code360/profile/aradhya7"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="transform hover:scale-110 transition-transform duration-300"
+                                  >
+                                    <img
+                                      src="/coding_ninja.png"
+                                      alt="Coding Ninja"
+                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                                    />
+                                  </a>
+                                </div>
+                                <div>
+                                  <a
+                                    href={"https://www.linkedin.com/in/aradhya08oc01/"}
+                                    className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {profileData.website}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Story Highlights - hide on small screens */}
+                          <div className="hidden sm:block">
+                            <FloatingHighlights />
+                          </div>
+                          
+                          {/* Content Tabs */}
+                          <div className="mt-6 border-t dark:border-gray-700">
+                            {/* Desktop Navigation */}
+                            <div className="hidden sm:flex justify-around sm:justify-center sm:gap-12">
+                              <button
+                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                                  activeTab === "projects"
+                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                                }`}
+                                onClick={() => setActiveTab("projects")}
+                              >
+                                <div className="flex items-center gap-2">
+                                  Projects
+                                </div>
+                              </button>
+                              <button
+                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                                  activeTab === "Experience"
+                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                                }`}
+                                onClick={() => setActiveTab("Experience")}
+                              >
+                                Experience
+                              </button>
+                              <button
+                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                                  activeTab === "Blogs"
+                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                                }`}
+                                onClick={() => setActiveTab("Blogs")}
+                              >
+                                Blogs
+                              </button>
+                              <button
+                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                                  activeTab === "About"
+                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                                }`}
+                                onClick={() => setActiveTab("About")}
+                              >
+                                About
+                              </button>
+                            </div>
+                            
+                            {/* Mobile Tab Navigation */}
+                            <div className="flex sm:hidden justify-between border-b dark:border-gray-700 mb-4">
+                              <button
+                                className={`py-2 px-2 text-xs font-medium ${
+                                  activeTab === "projects"
+                                    ? "text-blue-500 border-b-2 border-blue-500"
+                                    : "text-gray-500"
+                                }`}
+                                onClick={() => setActiveTab("projects")}
+                              >
+                                Projects
+                              </button>
+                              <button
+                                className={`py-2 px-2 text-xs font-medium ${
+                                  activeTab === "Experience"
+                                    ? "text-blue-500 border-b-2 border-blue-500"
+                                    : "text-gray-500"
+                                }`}
+                                onClick={() => setActiveTab("Experience")}
+                              >
+                                Experience
+                              </button>
+                              <button
+                                className={`py-2 px-2 text-xs font-medium ${
+                                  activeTab === "Blogs"
+                                    ? "text-blue-500 border-b-2 border-blue-500"
+                                    : "text-gray-500"
+                                }`}
+                                onClick={() => setActiveTab("Blogs")}
+                              >
+                                Blogs
+                              </button>
+                              <button
+                                className={`py-2 px-2 text-xs font-medium ${
+                                  activeTab === "About"
+                                    ? "text-blue-500 border-b-2 border-blue-500"
+                                    : "text-gray-500"
+                                }`}
+                                onClick={() => setActiveTab("About")}
+                              >
+                                About
+                              </button>
+                            </div>
+                            
+                            {/* Content Display */}
+                            <div className="w-full">
+                              {activeTab === "About" && <About />}
+                              {activeTab === "projects" && <Projects projects={projectsData} />}
+                              {activeTab === "Experience" && (
+                                <Experience experiences={experienceData} />
+                              )}
+                              {activeTab === "Blogs" && <Blogs blogs={blogsData} />}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Modals */}
+                        <SocialMenu
+                          isOpen={menuOpen}
+                          onClose={() => setMenuOpen(false)}
+                          position={menuPosition}
+                        />
+                        {showResume && <ResumeViewer onClose={() => setShowResume(false)} />}
+                        {showContactForm && (
+                          <ContactForm onClose={() => setShowContactForm(false)} />
+                        )}
+                      </div>
+                    );
+                  };
+                  
+                  export default Profile;
+                  
