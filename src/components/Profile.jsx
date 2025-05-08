@@ -380,7 +380,7 @@ const Profile = () => {
                           </div>
                           
                           {/* Story Highlights - hide on small screens */}
-                          <div className="hidden sm:block">
+                          <div>
                             <FloatingHighlights />
                           </div>
                           
