@@ -44,7 +44,7 @@ const FloatingHighlights = () => {
     {
       title: "Frontend Development",
       text: (
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 justify-items-center">
           <SiHtml5 className="w-8 h-8 text-[#E34F26] hover:scale-110 transition-transform" />
           <SiCss3 className="w-8 h-8 text-[#1572B6] hover:scale-110 transition-transform" />
           <SiJavascript className="w-8 h-8 text-[#F7DF1E] hover:scale-110 transition-transform" />
@@ -62,7 +62,7 @@ const FloatingHighlights = () => {
     {
       title: "Backend Development",
       text: (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 justify-items-center">
           <SiNodedotjs className="w-8 h-8 text-[#339933] hover:scale-110 transition-transform" />
           <SiExpress className="w-8 h-8 text-[#000000] dark:text-white hover:scale-110 transition-transform" />
           <TbApi className="w-8 h-8 text-[#FF6B6B] hover:scale-110 transition-transform" />
@@ -78,7 +78,7 @@ const FloatingHighlights = () => {
     {
       title: "Databases & Storage",
       text: (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-items-center">
           <SiMysql className="w-8 h-8 text-[#4479A1] hover:scale-110 transition-transform" />
           <SiMongodb className="w-8 h-8 text-[#47A248] hover:scale-110 transition-transform" />
         </div>
@@ -89,7 +89,7 @@ const FloatingHighlights = () => {
       title: "Deployment",
 
       text: (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-items-center">
           <SiFirebase className="w-8 h-8 text-[#de3308] hover:scale-110 transition-transform" />
           <SiVercel className="w-8 h-8 text-[#000000] dark:text-white hover:scale-110 transition-transform" />
           <SiNetlify className="w-8 h-8 text-[#00C7B7] hover:scale-110 transition-transform" />
@@ -100,7 +100,7 @@ const FloatingHighlights = () => {
     {
       title: "Version Control & Development Tools",
       text: (
-         <div className="grid grid-cols-5 gap-4">
+         <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 justify-items-center">
            <SiGit className="w-8 h-8 text-[#F05032] hover:scale-110 transition-transform" />
            <SiGithub className="w-8 h-8 text-[#181717] dark:text-white hover:scale-110 transition-transform" />
            <SiPostman className="w-8 h-8 text-[#FF6C37] hover:scale-110 transition-transform" />
@@ -113,7 +113,7 @@ const FloatingHighlights = () => {
     {
       title: "Software Development & Engineering Concepts",
       text: (
-         <div className="flex flex-col space-y-2">
+         <div className="flex flex-col space-y-2 px-2 text-center">
            <span>• Full-Stack Development</span>
            <span>• Testing and Debugging</span>
            <span>• Documentation</span>
