@@ -6,10 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const BlogAdmin = () => {
   const [blogs, setBlogs] = useState([]);
-  const [form, setForm] = useState({ 
-    title: "", 
-    description: "", 
-    date: new Date() 
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    date: new Date()
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({ id: "", password: "" });
@@ -82,69 +82,78 @@ const BlogAdmin = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="relative min-h-screen bg-black text-white px-4 flex items-center justify-center">
+      <div className="relative min-h-screen bg-white text-gray-800 p-4 flex items-center justify-center">
         <CustomCursor />
         <form
           onSubmit={handleLogin}
-          className="bg-white/10 border border-white/20 p-8 rounded-xl space-y-4 w-full max-w-sm backdrop-blur-md"
+          className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm border border-gray-200"
         >
-          <h2 className="text-2xl font-bold text-center mb-4">
-            🔐 Admin Login
-          </h2>
-          <input
-            type="text"
-            placeholder="ID"
-            value={credentials.id}
-            onChange={(e) =>
-              setCredentials({ ...credentials, id: e.target.value })
-            }
-            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
-            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            required
-          />
-          <button
-            type="submit"
-            className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-lg transition duration-200"
-          >
-            🔓 Login
-          </button>
+          <h2 className="text-2xl font-medium mb-6 text-center text-gray-900">Admin Login</h2>
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="ID"
+              value={credentials.id}
+              onChange={(e) =>
+                setCredentials({ ...credentials, id: e.target.value })
+              }
+              className="w-full p-3 rounded-md bg-gray-100 text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={credentials.password}
+              onChange={(e) =>
+                setCredentials({ ...credentials, password: e.target.value })
+              }
+              className="w-full p-3 rounded-md bg-gray-100 text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all"
+              required
+            />
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-md transition duration-200"
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-black text-white px-6 py-8">
+    <div className="relative min-h-screen bg-gray-50 text-gray-800 px-4 py-8 md:px-6">
       <CustomCursor />
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-extrabold text-white mb-6 border-b border-white/20 pb-2">
-          📝 Blog Admin Panel
-        </h2>
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl font-medium text-gray-900">Blog Admin</h2>
+          {/* <button
+            onClick={() => {
+              localStorage.removeItem("blogAdminAuth");
+              setIsAuthenticated(false);
+            }}
+            className="text-sm text-gray-500 hover:text-pink-500 transition-colors"
+          >
+            Logout
+          </button> */}
+        </div>
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 mb-10 bg-white/5 p-6 rounded-xl border border-white/20"
+          className="space-y-4 mb-10 bg-white p-5 rounded-lg border border-gray-200 shadow-sm"
         >
-          <input
-            value={form.title}
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
-            placeholder="Title"
-            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            required
-          />
-          <div className="w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              value={form.title}
+              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              placeholder="Title"
+              className="p-3 rounded-md bg-gray-100 text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all"
+              required
+            />
             <DatePicker
               selected={form.date}
               onChange={(date) => setForm({ ...form, date })}
-              className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="p-3 rounded-md bg-gray-100 text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all w-full"
               dateFormat="yyyy-MM-dd"
               required
             />
@@ -153,36 +162,47 @@ const BlogAdmin = () => {
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Description"
-            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="w-full p-3 rounded-md bg-gray-100 text-gray-900 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-pink-500 focus:border-pink-500 transition-all"
             rows={4}
             required
           />
           <button
             type="submit"
-            className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-lg transition duration-200"
+            className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-md transition duration-200"
           >
-            ➕ Add Blog
+            Add New Blog
           </button>
         </form>
-        <div className="space-y-6">
-          {blogs.map((blog) => (
-            <div
-              key={blog._id}
-              className="bg-white/5 border border-white/20 p-5 rounded-xl shadow-md hover:shadow-cyan-500/30 transition duration-300"
-            >
-              <h3 className="text-xl font-bold text-cyan-400">{blog.title}</h3>
-              <p className="text-sm text-gray-400 mb-1">{blog.date}</p>
-              <p className="text-white">{blog.description}</p>
-              <div className="flex gap-4 mt-3">
-                <button
-                  onClick={() => handleDelete(blog._id)}
-                  className="text-red-500 hover:text-red-300 font-semibold"
-                >
-                  ❌ Delete
-                </button>
+        <div className="grid grid-cols-1 gap-4">
+          {blogs.length === 0 ? (
+            <p className="text-center text-gray-500 py-8">No blog posts yet</p>
+          ) : (
+            blogs.map((blog) => (
+              <div
+                key={blog._id}
+                className="bg-white border border-gray-200 p-4 rounded-lg hover:shadow-md transition-all"
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-900">{blog.title}</h3>
+                    <p className="text-xs text-gray-500 mb-2">{blog.date}</p>
+                  </div>
+                  <button
+                    onClick={() => handleDelete(blog._id)}
+                    className="text-gray-400 hover:text-pink-500 transition-colors"
+                    aria-label="Delete blog post"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
+                <p className="text-gray-700 text-sm mt-1">{blog.description}</p>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
