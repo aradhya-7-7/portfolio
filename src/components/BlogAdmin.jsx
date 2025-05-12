@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CustomCursor from "./CustomCursor";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BlogAdmin = () => {
   const [blogs, setBlogs] = useState([]);
-  const [form, setForm] = useState({ title: "", description: "", date: "" });
+  const [form, setForm] = useState({ 
+    title: "", 
+    description: "", 
+    date: new Date() 
+  });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({ id: "", password: "" });
-
   const correctID = "admin";
   const correctPassword = "12345"; // Change this to your desired password
 
   const fetchBlogs = () => {
-  axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
-    .then((res) => setBlogs(res.data))
-    .catch((err) => {
-      console.error("Failed to fetch blogs:", err);
-      alert("Error: Could not load blogs");
-    });
-};
-
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
+      .then((res) => setBlogs(res.data))
+      .catch((err) => {
+        console.error("Failed to fetch blogs:", err);
+        alert("Error: Could not load blogs");
+      });
+  };
 
   useEffect(() => {
     if (localStorage.getItem("blogAdminAuth") === "true") {
@@ -30,7 +35,10 @@ const BlogAdmin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (credentials.id === correctID && credentials.password === correctPassword) {
+    if (
+      credentials.id === correctID &&
+      credentials.password === correctPassword
+    ) {
       localStorage.setItem("blogAdminAuth", "true");
       setIsAuthenticated(true);
       fetchBlogs();
@@ -40,77 +48,87 @@ const BlogAdmin = () => {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`, form)
-    .then(() => {
-      setForm({ title: "", description: "", date: "" });
-      fetchBlogs();
-    })
-    .catch((err) => {
-      console.error("Failed to create blog:", err);
-      alert("Error: Could not create blog");
-    });
-};
-
+    e.preventDefault();
+    // Format the date to YYYY-MM-DD before sending to the server
+    const formattedDate = form.date.toISOString().split('T')[0];
+    const formData = {
+      ...form,
+      date: formattedDate
+    };
+    
+    axios
+      .post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`, formData)
+      .then(() => {
+        setForm({ title: "", description: "", date: new Date() });
+        fetchBlogs();
+      })
+      .catch((err) => {
+        console.error("Failed to create blog:", err);
+        alert("Error: Could not create blog");
+      });
+  };
 
   const handleDelete = (id) => {
-  axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`)
-    .then(() => {
-      fetchBlogs();
-    })
-    .catch((err) => {
-      console.error("Failed to delete blog:", err);
-      alert("Error: Could not delete blog");
-    });
-};
-
+    axios
+      .delete(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`)
+      .then(() => {
+        fetchBlogs();
+      })
+      .catch((err) => {
+        console.error("Failed to delete blog:", err);
+        alert("Error: Could not delete blog");
+      });
+  };
 
   if (!isAuthenticated) {
-  return (
-    <div className="relative min-h-screen bg-black text-white px-4 flex items-center justify-center">
-      <CustomCursor />
-      <form
-        onSubmit={handleLogin}
-        className="bg-white/10 border border-white/20 p-8 rounded-xl space-y-4 w-full max-w-sm backdrop-blur-md"
-      >
-        <h2 className="text-2xl font-bold text-center mb-4">🔐 Admin Login</h2>
-        <input
-          type="text"
-          placeholder="ID"
-          value={credentials.id}
-          onChange={(e) => setCredentials({ ...credentials, id: e.target.value })}
-          className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={credentials.password}
-          onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-          className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-lg transition duration-200"
+    return (
+      <div className="relative min-h-screen bg-black text-white px-4 flex items-center justify-center">
+        <CustomCursor />
+        <form
+          onSubmit={handleLogin}
+          className="bg-white/10 border border-white/20 p-8 rounded-xl space-y-4 w-full max-w-sm backdrop-blur-md"
         >
-          🔓 Login
-        </button>
-      </form>
-    </div>
-  );
-}
-
+          <h2 className="text-2xl font-bold text-center mb-4">
+            🔐 Admin Login
+          </h2>
+          <input
+            type="text"
+            placeholder="ID"
+            value={credentials.id}
+            onChange={(e) =>
+              setCredentials({ ...credentials, id: e.target.value })
+            }
+            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={credentials.password}
+            onChange={(e) =>
+              setCredentials({ ...credentials, password: e.target.value })
+            }
+            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-lg transition duration-200"
+          >
+            🔓 Login
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-black text-white px-6 py-8">
       <CustomCursor />
-
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-extrabold text-white mb-6 border-b border-white/20 pb-2">
           📝 Blog Admin Panel
         </h2>
-
         <form
           onSubmit={handleSubmit}
           className="space-y-4 mb-10 bg-white/5 p-6 rounded-xl border border-white/20"
@@ -122,13 +140,15 @@ const BlogAdmin = () => {
             className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
             required
           />
-          <input
-            value={form.date}
-            onChange={(e) => setForm({ ...form, date: e.target.value })}
-            placeholder="Date"
-            className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            required
-          />
+          <div className="w-full">
+            <DatePicker
+              selected={form.date}
+              onChange={(date) => setForm({ ...form, date })}
+              className="w-full p-3 rounded bg-black text-white border border-cyan-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              dateFormat="yyyy-MM-dd"
+              required
+            />
+          </div>
           <textarea
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -144,7 +164,6 @@ const BlogAdmin = () => {
             ➕ Add Blog
           </button>
         </form>
-
         <div className="space-y-6">
           {blogs.map((blog) => (
             <div

@@ -35,12 +35,13 @@ const Profile = () => {
   });
   const [blogs, setBlogs] = useState([]);
 
-useEffect(() => {
-  axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
-    .then(res => setBlogs(res.data))
-    .catch(err => console.error(err));
-}, []);
-  
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
+      .then((res) => setBlogs(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   const username = "aradhya-7-7";
 
   const profileData = {
@@ -53,15 +54,15 @@ useEffect(() => {
   useEffect(() => {
     // Check if the device is mobile or touchscreen
     const checkIfMobile = () => {
-      const isTouchDevice = 
+      const isTouchDevice =
         window.matchMedia("(pointer: coarse)").matches ||
         window.innerWidth < 768;
       setIsMobile(isTouchDevice);
     };
-    
+
     checkIfMobile(); // On initial load
     window.addEventListener("resize", checkIfMobile); // Recheck on resize
-    
+
     return () => {
       window.removeEventListener("resize", checkIfMobile); // Clean up
     };
@@ -74,12 +75,12 @@ useEffect(() => {
           `https://api.github.com/users/${username}`
         );
         const reposData = await reposRes.json();
-        
+
         const prsRes = await fetch(
           `https://api.github.com/search/issues?q=author:${username}+type:pr`
         );
         const prsData = await prsRes.json();
-        
+
         const commitsRes = await fetch(
           `https://api.github.com/search/commits?q=author:${username}`,
           {
@@ -87,7 +88,7 @@ useEffect(() => {
           }
         );
         const commitsData = await commitsRes.json();
-        
+
         setStats({
           pullRequests: prsData.total_count || 0,
           contributions: commitsData.total_count || 0,
@@ -104,7 +105,7 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-3 sm:px-6 lg:px-8 overflow-x-hidden">
       {!isMobile && <CustomCursor />}
-      
+
       {/* Theme Toggle */}
       <button
         onClick={() => setDarkMode(!darkMode)}
@@ -212,16 +213,22 @@ useEffect(() => {
             <div className="relative group cursor-pointer">
               <div className="instagram-gradient-border w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40">
                 <div className="p-[3px] rounded-full bg-white dark:bg-black">
-                  <img 
-                    src={photo} 
-                    alt="Profile" 
-                    className="w-full h-full rounded-full object-cover"
-                  />
+                  <a
+                    href="https://portfolio-xi-fawn-51.vercel.app/admin/blogs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={photo}
+                      alt="Profile"
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Profile Info */}
           <div className="flex-1 space-y-3 sm:space-y-4 px-2 sm:px-4 text-center sm:text-left">
             {/* Username and Actions */}
@@ -229,7 +236,7 @@ useEffect(() => {
               <h1 className="text-lg sm:text-xl font-semibold">
                 {profileData.username}
               </h1>
-              
+
               {/* Action buttons - hidden on mobile, shown in desktop */}
               <div className="hidden sm:flex flex-wrap justify-center sm:justify-start gap-2">
                 <button
@@ -266,7 +273,7 @@ useEffect(() => {
                 </button>
               </div>
             </div>
-            
+
             {/* Stats */}
             <div className="flex justify-center sm:justify-start gap-4 sm:gap-8 mb-3 sm:mb-6">
               <div className="text-center sm:text-left">
@@ -294,7 +301,7 @@ useEffect(() => {
                 </p>
               </div>
             </div>
-            
+
             {/* Bio */}
             <div className="space-y-2">
               <h2 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
@@ -303,7 +310,7 @@ useEffect(() => {
               <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                 {profileData.bio}
               </p>
-              
+
               {/* Action buttons for mobile */}
               <div className="flex sm:hidden justify-center gap-2 my-3">
                 <button
@@ -319,7 +326,7 @@ useEffect(() => {
                   Contact
                 </button>
               </div>
-              
+
               {/* Coding platforms */}
               <div className="coding-platforms flex flex-wrap items-center justify-center sm:justify-start gap-3 my-4 p-3 backdrop-blur-lg dark:bg-gray-800/30 bg-white/30 dark:border-gray-700/30 border-white/30 border rounded-3xl shadow-xl dark:shadow-gray-900/30 transition-all duration-300 ease-in-out hover:bg-white/40 dark:hover:bg-gray-800/40 hover:scale-[1.02] hover:shadow-2xl dark:hover:shadow-gray-900/40 group max-w-xl mx-auto sm:mx-0 w-fit">
                 {/* GitHub Logo */}
@@ -329,186 +336,181 @@ useEffect(() => {
                   rel="noopener noreferrer"
                   className="transform hover:scale-110 transition-transform duration-300"
                 >
-                  <FaGithub
-                    className="text-2xl dark:text-gray-200 text-gray-800 transition-colors duration-300 group-hover:text-gray-600 dark:group-hover:text-gray-400"
-                  />
+                  <FaGithub className="text-2xl dark:text-gray-200 text-gray-800 transition-colors duration-300 group-hover:text-gray-600 dark:group-hover:text-gray-400" />
                 </a>
                 {/* CodeChef Logo */}
                 <a
-                                    href="https://www.codechef.com/users/aradhya77777"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="transform hover:scale-110 transition-transform duration-300"
-                                  >
-                                    <img
-                                      src="/codechef.png"
-                                      alt="CodeChef"
-                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-                                    />
-                                  </a>
-                                  {/* LeetCode Logo */}
-                                  <a
-                                    href="https://leetcode.com/u/aradhya610/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="transform hover:scale-110 transition-transform duration-300"
-                                  >
-                                    <img
-                                      src="/leetcode.png"
-                                      alt="LeetCode"
-                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-                                    />
-                                  </a>
-                                  {/* Coding Ninja Logo */}
-                                  <a
-                                    href="https://www.naukri.com/code360/profile/aradhya7"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="transform hover:scale-110 transition-transform duration-300"
-                                  >
-                                    <img
-                                      src="/coding_ninja.png"
-                                      alt="Coding Ninja"
-                                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-                                    />
-                                  </a>
-                                </div>
-                                <div>
-                                  <a
-                                    href={"https://www.linkedin.com/in/aradhya08oc01/"}
-                                    className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {profileData.website}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Story Highlights - hide on small screens */}
-                          <div>
-                            <FloatingHighlights />
-                          </div>
-                          
-                          {/* Content Tabs */}
-                          <div className="mt-6 border-t dark:border-gray-700">
-                            {/* Desktop Navigation */}
-                            <div className="hidden sm:flex justify-around sm:justify-center sm:gap-12">
-                              <button
-                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
-                                  activeTab === "projects"
-                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
-                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                                }`}
-                                onClick={() => setActiveTab("projects")}
-                              >
-                                <div className="flex items-center gap-2">
-                                  Projects
-                                </div>
-                              </button>
-                              <button
-                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
-                                  activeTab === "Experience"
-                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
-                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                                }`}
-                                onClick={() => setActiveTab("Experience")}
-                              >
-                                Experience
-                              </button>
-                              <button
-                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
-                                  activeTab === "Blogs"
-                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
-                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                                }`}
-                                onClick={() => setActiveTab("Blogs")}
-                              >
-                                Blogs
-                              </button>
-                              <button
-                                className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
-                                  activeTab === "About"
-                                    ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
-                                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                                }`}
-                                onClick={() => setActiveTab("About")}
-                              >
-                                About
-                              </button>
-                            </div>
-                            
-                            {/* Mobile Tab Navigation */}
-                            <div className="flex sm:hidden justify-between border-b dark:border-gray-700 mb-4">
-                              <button
-                                className={`py-2 px-2 text-xs font-medium ${
-                                  activeTab === "projects"
-                                    ? "text-blue-500 border-b-2 border-blue-500"
-                                    : "text-gray-500"
-                                }`}
-                                onClick={() => setActiveTab("projects")}
-                              >
-                                Projects
-                              </button>
-                              <button
-                                className={`py-2 px-2 text-xs font-medium ${
-                                  activeTab === "Experience"
-                                    ? "text-blue-500 border-b-2 border-blue-500"
-                                    : "text-gray-500"
-                                }`}
-                                onClick={() => setActiveTab("Experience")}
-                              >
-                                Experience
-                              </button>
-                              <button
-                                className={`py-2 px-2 text-xs font-medium ${
-                                  activeTab === "Blogs"
-                                    ? "text-blue-500 border-b-2 border-blue-500"
-                                    : "text-gray-500"
-                                }`}
-                                onClick={() => setActiveTab("Blogs")}
-                              >
-                                Blogs
-                              </button>
-                              <button
-                                className={`py-2 px-2 text-xs font-medium ${
-                                  activeTab === "About"
-                                    ? "text-blue-500 border-b-2 border-blue-500"
-                                    : "text-gray-500"
-                                }`}
-                                onClick={() => setActiveTab("About")}
-                              >
-                                About
-                              </button>
-                            </div>
-                            
-                            {/* Content Display */}
-                            <div className="w-full">
-                              {activeTab === "About" && <About />}
-                              {activeTab === "projects" && <Projects projects={projectsData} />}
-                              {activeTab === "Experience" && (
-                                <Experience experiences={experienceData} />
-                              )}
-                              {activeTab === "Blogs" && <Blogs blogs={blogs} />}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Modals */}
-                        <SocialMenu
-                          isOpen={menuOpen}
-                          onClose={() => setMenuOpen(false)}
-                          position={menuPosition}
-                        />
-                        {showResume && <ResumeViewer onClose={() => setShowResume(false)} />}
-                        {showContactForm && (
-                          <ContactForm onClose={() => setShowContactForm(false)} />
-                        )}
-                      </div>
-                    );
-                  };
-                  
-                  export default Profile;
-                  
+                  href="https://www.codechef.com/users/aradhya77777"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <img
+                    src="/codechef.png"
+                    alt="CodeChef"
+                    className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                  />
+                </a>
+                {/* LeetCode Logo */}
+                <a
+                  href="https://leetcode.com/u/aradhya610/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <img
+                    src="/leetcode.png"
+                    alt="LeetCode"
+                    className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                  />
+                </a>
+                {/* Coding Ninja Logo */}
+                <a
+                  href="https://www.naukri.com/code360/profile/aradhya7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <img
+                    src="/coding_ninja.png"
+                    alt="Coding Ninja"
+                    className="w-6 h-6 sm:w-7 sm:h-7 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                  />
+                </a>
+              </div>
+              <div>
+                <a
+                  href={"https://www.linkedin.com/in/aradhya08oc01/"}
+                  className="text-[#0095F6] hover:text-[#1877F2] text-sm font-medium pt-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {profileData.website}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Story Highlights - hide on small screens */}
+        <div>
+          <FloatingHighlights />
+        </div>
+
+        {/* Content Tabs */}
+        <div className="mt-6 border-t dark:border-gray-700">
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex justify-around sm:justify-center sm:gap-12">
+            <button
+              className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                activeTab === "projects"
+                  ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              }`}
+              onClick={() => setActiveTab("projects")}
+            >
+              <div className="flex items-center gap-2">Projects</div>
+            </button>
+            <button
+              className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                activeTab === "Experience"
+                  ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              }`}
+              onClick={() => setActiveTab("Experience")}
+            >
+              Experience
+            </button>
+            <button
+              className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                activeTab === "Blogs"
+                  ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              }`}
+              onClick={() => setActiveTab("Blogs")}
+            >
+              Blogs
+            </button>
+            <button
+              className={`py-3 px-6 text-sm font-medium tracking-wider transition-all duration-300 ${
+                activeTab === "About"
+                  ? "text-gray-900 dark:text-white border-t-2 border-gray-900 dark:border-white"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              }`}
+              onClick={() => setActiveTab("About")}
+            >
+              About
+            </button>
+          </div>
+
+          {/* Mobile Tab Navigation */}
+          <div className="flex sm:hidden justify-between border-b dark:border-gray-700 mb-4">
+            <button
+              className={`py-2 px-2 text-xs font-medium ${
+                activeTab === "projects"
+                  ? "text-blue-500 border-b-2 border-blue-500"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("projects")}
+            >
+              Projects
+            </button>
+            <button
+              className={`py-2 px-2 text-xs font-medium ${
+                activeTab === "Experience"
+                  ? "text-blue-500 border-b-2 border-blue-500"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("Experience")}
+            >
+              Experience
+            </button>
+            <button
+              className={`py-2 px-2 text-xs font-medium ${
+                activeTab === "Blogs"
+                  ? "text-blue-500 border-b-2 border-blue-500"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("Blogs")}
+            >
+              Blogs
+            </button>
+            <button
+              className={`py-2 px-2 text-xs font-medium ${
+                activeTab === "About"
+                  ? "text-blue-500 border-b-2 border-blue-500"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("About")}
+            >
+              About
+            </button>
+          </div>
+
+          {/* Content Display */}
+          <div className="w-full">
+            {activeTab === "About" && <About />}
+            {activeTab === "projects" && <Projects projects={projectsData} />}
+            {activeTab === "Experience" && (
+              <Experience experiences={experienceData} />
+            )}
+            {activeTab === "Blogs" && <Blogs blogs={blogs} />}
+          </div>
+        </div>
+      </div>
+
+      {/* Modals */}
+      <SocialMenu
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        position={menuPosition}
+      />
+      {showResume && <ResumeViewer onClose={() => setShowResume(false)} />}
+      {showContactForm && (
+        <ContactForm onClose={() => setShowContactForm(false)} />
+      )}
+    </div>
+  );
+};
+
+export default Profile;

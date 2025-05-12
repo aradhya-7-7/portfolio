@@ -13,34 +13,16 @@
 }
 
 /* Hide scrollbar globally */
-/* index.css or App.css */
 body {
-  overflow: scroll; /* ensures scrolling works */
+  overflow: auto; /* changed from scroll to auto */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-/* Style the scrollbar track (background area) */
+/* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
-  width: 4px;  /* Very thin scrollbar */
-  height: 4px; /* Very thin scrollbar for horizontal scroll */
+  display: none;
 }
-
-/* Style the scrollbar thumb (the draggable part) */
-::-webkit-scrollbar-thumb {
-  background-color: #4f46e5;  /* Indigo color */
-  border-radius: 10px;  /* Optional: rounded corners for thumb */
-}
-
-/* Style the scrollbar track (where the thumb slides) */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Optional: make the thumb glow slightly on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #4338ca;  /* Darker shade of indigo when hovered */
-}
-
-
 
 @layer base {
   * {
@@ -53,7 +35,6 @@ body {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
   }
-
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 0 0% 100%;
@@ -71,24 +52,6 @@ body {
       transform: scale(1);
     }
   }
-}
-
-/* Custom scrollbar styles */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
 }
 
 /* Smooth scrolling */
@@ -121,4 +84,3 @@ html {
   height: 100%;
   object-fit: cover;
 }
-
