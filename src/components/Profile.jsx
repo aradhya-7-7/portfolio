@@ -13,7 +13,8 @@ import Projects from "./Projects";
 import Blogs from "./Blogs";
 import Experience from "./Experience";
 import { FaGithub } from "react-icons/fa";
-import { projectsData, experienceData, blogsData } from "../Data/data";
+import { projectsData, experienceData } from "../Data/data";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
@@ -32,6 +33,13 @@ const Profile = () => {
     contributions: 0,
     repositories: 0,
   });
+  const [blogs, setBlogs] = useState([]);
+
+useEffect(() => {
+  axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
+    .then(res => setBlogs(res.data))
+    .catch(err => console.error(err));
+}, []);
   
   const username = "aradhya-7-7";
 
@@ -483,7 +491,7 @@ const Profile = () => {
                               {activeTab === "Experience" && (
                                 <Experience experiences={experienceData} />
                               )}
-                              {activeTab === "Blogs" && <Blogs blogs={blogsData} />}
+                              {activeTab === "Blogs" && <Blogs blogs={blogs} />}
                             </div>
                           </div>
                         </div>

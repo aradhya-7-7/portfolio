@@ -2,15 +2,9 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BlogModal = ({ blog, onClose, isMobile }) => {
-  const [comment, setComment] = useState("");
-  const [isLiked, setIsLiked] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
-
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
@@ -20,25 +14,35 @@ const BlogModal = ({ blog, onClose, isMobile }) => {
     <div
       className={`${
         isMobile ? "fixed inset-0" : "relative"
-      } bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 max-w-4xl mx-auto rounded-xl shadow-lg overflow-hidden flex flex-col`}
+      } bg-white/10 dark:bg-black/30 backdrop-blur-md text-white border border-white/20 rounded-2xl shadow-lg max-w-3xl mx-auto overflow-hidden flex flex-col`}
     >
       {/* Header */}
-      <div className="p-4 border-b dark:border-gray-700 flex justify-between items-center">
-        <h2 className="text-2xl font-semibold">{blog.title}</h2>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{blog.timestamp}</span>
+      <div className="p-4 border-b border-white/20 flex justify-between items-center">
+        <h2 className="text-xl font-bold">{blog.title}</h2>
+        <span className="text-sm text-gray-300">{blog.date}</span>
         <button
           onClick={onClose}
-          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-2xl"
+          className="text-white hover:text-red-400 text-2xl font-bold"
         >
-          &times; {/* Cross icon */}
+          &times;
         </button>
       </div>
 
       {/* Content */}
-      <div className="p-6 overflow-y-auto flex-1 space-y-6">
-        <div>
-          <p className="text-base leading-relaxed">{blog.content}</p>
-        </div>
+      <div className="p-6 overflow-y-auto flex-1 space-y-4">
+        <p className="text-base leading-relaxed text-gray-200">
+          {blog.description}
+        </p>
+        {/* {blog.url && (
+          <a
+            href={blog.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-4 text-sm px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white"
+          >
+            Visit Blog
+          </a>
+        )} */}
       </div>
     </div>
   );

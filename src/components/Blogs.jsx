@@ -20,7 +20,7 @@ const Blogs = ({ blogs }) => {
           <div
             key={blog.id}
             onClick={() => handleBlogClick(blog)}
-            className="cursor-pointer p-4 rounded-xl border border-blue-500 dark:border-blue-400 transition-all duration-300 shadow-md hover:shadow-blue-400 hover:shadow-lg bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100"
+            className="cursor-pointer p-4 rounded-xl border border-blue-500 dark:border-blue-400 transition-all duration-300 shadow-md hover:shadow-[0_0_15px_#1877f2] bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100"
           >
             <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">
               {blog.title}
