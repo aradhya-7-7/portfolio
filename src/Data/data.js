@@ -28,7 +28,7 @@ export const projectsData = [
     thumbnail: "/posts/3.png",
     technologies: ["React", "Framer Motion", "TailwindCSS"],
     links: {
-      demo: "https://yourportfolio.com",
+      demo: "https://portfolio-xi-fawn-51.vercel.app/",
       github: "https://github.com/aradhya-7-7/portfolio",
     },
   },
@@ -39,7 +39,7 @@ export const projectsData = [
     thumbnail: "/posts/4.png",
     technologies: ["React", "Vite", "TailwindCSS"],
     links: {
-      demo: "https://devtool-kit.netlify.app/",
+      demo: "https://dev-toolkit-sigma.vercel.app/",
       github: "https://github.com/aradhya-7-7/dev-toolkit",
     },
   },
