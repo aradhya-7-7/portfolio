@@ -150,52 +150,53 @@ const FloatingHighlights = () => {
 
   return (
     <div className="mt-6 -mx-4 px-4">
-      <div className="flex gap-3 overflow-x-auto scrollbar-hide">
-        {highlights.map((highlight, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center flex-shrink-0 w-24"
-          >
-            <div className="p-[2px] rounded-full bg-gray-500">
-              <div className="p-[4px] rounded-full bg-white dark:bg-gray-900">
-                <div
-                  className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-gray-800 cursor-pointer transition-all hover:scale-105 flex items-center justify-center ${
-                    selectedIndex === index ? "ring-2 ring-blue-500" : ""
-                  }`}
-                  onClick={(e) => handleClick(index, e)}
-                >
-                  {highlight.icon}
-                </div>
-              </div>
-            </div>
-            <span className="text-xs mt-2 text-center whitespace-normal font-medium">
-              {highlight.title}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {selectedIndex !== null && (
-        <div
-          ref={menuRef}
-          className="fixed z-50 rounded-lg p-4 w-[600px] backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
-          style={{
-            top: position.y + "px",
-            left: position.x + "px",
-            animation: "scaleIn 0.2s ease-out",
-          }}
-        >
-          <div className="px-6 py-4">
-            <h3 className="text-xl font-semibold mb-3">
-              {highlights[selectedIndex].title}
-            </h3>
-            <div className="text-base leading-relaxed text-gray-600 dark:text-gray-300">
-              {highlights[selectedIndex].text}
+  <div className="flex gap-3 overflow-x-auto scrollbar-hide sm:gap-4">
+    {highlights.map((highlight, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center flex-shrink-0 w-20 sm:w-24"
+      >
+        <div className="p-[1.5px] sm:p-[2px] rounded-full bg-gray-500">
+          <div className="p-[3px] sm:p-[4px] rounded-full bg-white dark:bg-gray-900">
+            <div
+              className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-100 dark:bg-gray-800 cursor-pointer transition-transform duration-200 hover:scale-105 flex items-center justify-center ${
+                selectedIndex === index ? "ring-2 ring-blue-500" : ""
+              }`}
+              onClick={(e) => handleClick(index, e)}
+            >
+              {highlight.icon}
             </div>
           </div>
         </div>
-      )}
+        <span className="text-[10px] sm:text-xs mt-2 text-center whitespace-normal font-medium text-gray-700 dark:text-gray-200">
+          {highlight.title}
+        </span>
+      </div>
+    ))}
+  </div>
+
+  {selectedIndex !== null && (
+    <div
+      ref={menuRef}
+      className="fixed z-50 rounded-lg p-4 w-[90vw] sm:w-[600px] backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
+      style={{
+        top: position.y + "px",
+        left: position.x + "px",
+        animation: "scaleIn 0.2s ease-out",
+      }}
+    >
+      <div className="px-4 sm:px-6 py-3 sm:py-4">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">
+          {highlights[selectedIndex].title}
+        </h3>
+        <div className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300">
+          {highlights[selectedIndex].text}
+        </div>
+      </div>
     </div>
+  )}
+</div>
+
   );
 };
 

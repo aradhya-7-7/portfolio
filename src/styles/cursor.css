@@ -22,9 +22,33 @@ input[type="submit"],
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
+  will-change: transform, top, left;
   animation: rotate 4s linear infinite;
+  transition: transform 0.06s ease-out;
 }
+
+/* .cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: top, left;
+  transition: transform 0.06s ease-out;
+} */
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 
 /* Hover effect - rotates faster */
 .custom-cursor.hover {

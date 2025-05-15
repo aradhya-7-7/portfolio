@@ -392,7 +392,7 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Story Highlights - hide on small screens */}
+       
         <div>
           <FloatingHighlights />
         </div>
