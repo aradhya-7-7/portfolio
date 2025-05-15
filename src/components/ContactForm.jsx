@@ -12,12 +12,20 @@ const ContactForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const templateParams = {
+      from_name: formData.name,
+      user_email: formData.email,
+      message: formData.message,
+      to_name: "Aradhya Srivastava", // Replace with your actual name
+    };
+
     emailjs
       .send(
-        "service_xahjxka",
-        "template_tsema5i",
-        formData,
-        "w9fTIM19r2oHHbZvv"
+        "service_2ttlo7i",      // Your EmailJS service ID
+        "template_f8rb6ca",     // Your EmailJS template ID
+        templateParams,         // ✅ Custom parameter object
+        "RhPJ_JJqj4_q95HbZ"     // Your public API key
       )
       .then(() => {
         alert("Message Sent Successfully!");
@@ -32,13 +40,14 @@ const ContactForm = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30">
       <div
-        className={`w-full max-w-md p-8 rounded-2xl backdrop-blur-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] transition-all duration-300
-        ${
-          darkMode
-            ? "bg-gray-800/20 text-white border border-gray-700/30"
-            : "bg-white/20 text-gray-900 border border-white/30"
-        }`}
-      >
+  className={`w-full max-w-md p-8 rounded-3xl backdrop-blur-xl shadow-lg transition-all duration-300 border
+  ${
+    darkMode
+      ? "bg-white/10 text-white border-white/10"
+      : "bg-white/30 text-gray-900 border-white/40"
+  }`}
+>
+
         <h2 className="text-2xl font-semibold mb-6 text-center">Contact Me</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -85,8 +94,7 @@ const ContactForm = ({ onClose }) => {
           />
           <button
             type="submit"
-            className="bg-blue-600/80 hover:bg-blue-700/90 text-white p-3 rounded-lg transition font-semibold shadow-lg hover:shadow-blue-500/25 w-3/4 mx-auto
-"
+            className="bg-blue-600/80 hover:bg-blue-700/90 text-white p-3 rounded-lg transition font-semibold shadow-lg hover:shadow-blue-500/25 w-3/4 mx-auto"
           >
             Send Message
           </button>
