@@ -328,7 +328,7 @@ const Profile = () => {
               </div>
 
               {/* Coding platforms */}
-<style>{`
+              <style>{`
   .shine-effect {
     position: relative;
     overflow: hidden;
@@ -356,70 +356,67 @@ const Profile = () => {
   }
 `}</style>
 
-<div className="coding-platforms flex flex-wrap items-center justify-center sm:justify-start gap-3 my-4 p-3 backdrop-blur-lg transition-all duration-300 ease-in-out hover:scale-[1.02] group max-w-xl mx-auto sm:mx-0 w-fit">
-  {/* GitHub Logo */}
-  <a
-    href="https://github.com/aradhya-7-7"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transform hover:scale-110 transition-transform duration-300"
-  >
-    <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
-      <FaGithub className="text-xl dark:text-gray-200 text-gray-800 transition-colors duration-300 group-hover:text-gray-600 dark:group-hover:text-gray-400" />
-    </div>
-  </a>
+              <div className="coding-platforms flex flex-wrap items-center justify-center sm:justify-start gap-3 my-4 p-3 backdrop-blur-lg transition-all duration-300 ease-in-out hover:scale-[1.02] group max-w-xl mx-auto sm:mx-0 w-fit">
+                {/* GitHub Logo */}
+                <a
+                  href="https://github.com/aradhya-7-7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
+                    <FaGithub className="text-xl dark:text-gray-200 text-gray-800 transition-colors duration-300 group-hover:text-gray-600 dark:group-hover:text-gray-400" />
+                  </div>
+                </a>
 
-  {/* CodeChef Logo */}
-  <a
-    href="https://www.codechef.com/users/aradhya77777"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transform hover:scale-110 transition-transform duration-300"
-  >
-    <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
-      <img
-        src="/codechef.png"
-        alt="CodeChef"
-        className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-      />
-    </div>
-  </a>
+                {/* CodeChef Logo */}
+                <a
+                  href="https://www.codechef.com/users/aradhya77777"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
+                    <img
+                      src="/codechef.png"
+                      alt="CodeChef"
+                      className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                    />
+                  </div>
+                </a>
 
-  {/* LeetCode Logo */}
-  <a
-    href="https://leetcode.com/u/aradhya610/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transform hover:scale-110 transition-transform duration-300"
-  >
-    <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
-      <img
-        src="/leetcode.png"
-        alt="LeetCode"
-        className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-      />
-    </div>
-  </a>
+                {/* LeetCode Logo */}
+                <a
+                  href="https://leetcode.com/u/aradhya610/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
+                    <img
+                      src="/leetcode.png"
+                      alt="LeetCode"
+                      className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                    />
+                  </div>
+                </a>
 
-  {/* Coding Ninja Logo */}
-  <a
-    href="https://www.naukri.com/code360/profile/aradhya7"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transform hover:scale-110 transition-transform duration-300"
-  >
-    <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
-      <img
-        src="/coding_ninja.png"
-        alt="Coding Ninja"
-        className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
-      />
-    </div>
-  </a>
-</div>
-
-
-
+                {/* Coding Ninja Logo */}
+                <a
+                  href="https://www.naukri.com/code360/profile/aradhya7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transform hover:scale-110 transition-transform duration-300"
+                >
+                  <div className="shine-effect w-10 h-10 p-1.5 rounded-full backdrop-blur-md bg-white/30 dark:bg-gray-700/30 border border-gray-300/40 dark:border-gray-600/60 flex items-center justify-center transition-all duration-300">
+                    <img
+                      src="/coding_ninja.png"
+                      alt="Coding Ninja"
+                      className="w-5 h-5 object-contain filter dark:brightness-90 transition-all duration-300 group-hover:brightness-110 dark:group-hover:brightness-100"
+                    />
+                  </div>
+                </a>
+              </div>
 
               <div>
                 <a
