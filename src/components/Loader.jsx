@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 const devQuotes = [
-  "Turning coffee into code...",
+  "Turning chai into code...",
   "Debugging the matrix...",
   "npm installing your patience...",
   "git commit -m 'Loading awesome stuff'",
-  "while(loading) { drink_coffee(); }",
+  "while(loading) { drink_chai(); }",
   "404: Loading screen not found... JK!",
   "Converting caffeine to code...",
   "sudo load --faster",
@@ -75,7 +75,7 @@ const Loader = () => {
 
       {/* Extra Glow Effect */}
       <div className="absolute bottom-8 text-xs text-green-700 animate-pulse">
-        // powered by caffeine ☕
+        // powered by Chai☕
       </div>
 
       {/* Custom blink animation */}
