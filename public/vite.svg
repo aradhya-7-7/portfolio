@@ -1,12 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg version="1.1" id="designs" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
-<style type="text/css">
-	.scienceandfiction_een{fill:#2B4099;}
-	.scienceandfiction_twee{fill:#CC2954;}
-</style>
-<path class="scienceandfiction_een" d="M29,21V5H3v16h11v3h-4v3h12v-3h-4v-3H29z M4,20V6h24v14H4z M21,25v1H11v-1H21z M17,24h-2v-3
-	h2V24z"/>
-<path class="scienceandfiction_twee" d="M11,8H6V7h5V8z M13,9h-3v1h3V9z M13,11h-3v1h3V11z M13,7h-1v1h1V7z M17,13h-1v1h1V13z
-	 M18,17h-1v1h1V17z M15,13h-3v1h3V13z M18,15h-4v1h4V15z M22,17h-3v1h3V17z M9,9H8v1h1V9z M15,11h-1v1h1V11z"/>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <!-- Gradient for dark monitor -->
+    <linearGradient id="darkMonitorGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f1f1f" />
+      <stop offset="100%" stop-color="#2c2c2c" />
+    </linearGradient>
+
+    <!-- Instagram gradient -->
+    <radialGradient id="instaGradient" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#feda75"/>
+      <stop offset="40%" stop-color="#fa7e1e"/>
+      <stop offset="60%" stop-color="#d62976"/>
+      <stop offset="80%" stop-color="#962fbf"/>
+      <stop offset="100%" stop-color="#4f5bd5"/>
+    </radialGradient>
+
+    <!-- Shadow/glow for contrast -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Monitor -->
+  <rect x="20" y="30" width="160" height="120" rx="12" fill="url(#darkMonitorGradient)" stroke="#444" stroke-width="2" filter="url(#glow)" />
+
+  <!-- Stand -->
+  <rect x="85" y="150" width="30" height="10" rx="2" fill="#444"/>
+  <rect x="75" y="160" width="50" height="5" rx="3" fill="#333"/>
+
+  <!-- Instagram icon inside monitor -->
+  <g transform="translate(70 60)">
+    <!-- Outer rounded square -->
+    <rect x="0" y="0" width="60" height="60" rx="15" fill="url(#instaGradient)" />
+    <!-- Main circle -->
+    <circle cx="30" cy="30" r="14" fill="none" stroke="#fff" stroke-width="2"/>
+    <!-- Corner dot -->
+    <circle cx="46" cy="14" r="4" fill="#fff"/>
+  </g>
 </svg>
