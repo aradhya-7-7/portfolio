@@ -21,23 +21,30 @@ const BlogModal = ({ blog, onClose }) => {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="w-[90vw] max-w-3xl max-h-[90vh] bg-white/10 dark:bg-black/30 backdrop-blur-md text-white border border-white/20 rounded-2xl shadow-lg flex flex-col overflow-hidden"
+          className="w-[95vw] max-w-4xl max-h-[90vh] bg-white/10 dark:bg-black/30 backdrop-blur-md text-white border border-white/20 rounded-2xl shadow-lg flex flex-col overflow-hidden"
         >
           {/* Header */}
           <div className="p-4 border-b border-white/20 flex justify-between items-center">
-            <h2 className="text-xl font-bold">{blog.title}</h2>
-            <span className="text-sm text-gray-300">{blog.date}</span>
+            <h2 className="text-xl font-bold border border-white/20 px-3 py-1 rounded-xl">
+              {blog.title}
+            </h2>
+            <span className="text-sm text-gray-300 border border-white/20 px-3 py-1 rounded-xl ml-4">
+              {blog.date}
+            </span>
+
             <button
-              onClick={onClose}
-              className="text-white hover:text-red-400 text-2xl font-bold"
-            >
-              &times;
-            </button>
+  onClick={onClose}
+  className="text-red-500 hover:text-red-400 text-2xl font-bold transition duration-200 ease-in-out drop-shadow-[0_0_8px_rgba(255,0,0,0.8)] hover:drop-shadow-[0_0_12px_rgba(255,0,0,1)] active:scale-90"
+>
+  &times;
+</button>
+
+
           </div>
 
           {/* Scrollable Content */}
           <div className="p-6 overflow-y-auto flex-1 space-y-4">
-            <p className="text-base leading-relaxed text-gray-200">
+            <p className="text-base leading-relaxed text-gray-200 text-justify">
               {blog.description}
             </p>
             {/* 

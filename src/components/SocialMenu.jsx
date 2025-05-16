@@ -23,12 +23,12 @@ const SocialMenu = ({ isOpen, onClose, position }) => {
       url: 'https://instagram.com/aradhya.7',
       color: 'hover:text-pink-600'
     },
-    {
-      icon: <FaXTwitter className="w-5 h-5" />,
-      label: 'X (Twitter)',
-      url: 'https://x.com/yourusername',
-      color: 'hover:text-gray-800 dark:hover:text-black'
-    }
+    // {
+    //   icon: <FaXTwitter className="w-5 h-5" />,
+    //   label: 'X (Twitter)',
+    //   url: 'https://x.com/yourusername',
+    //   color: 'hover:text-gray-800 dark:hover:text-black'
+    // }
   ];
 
   useEffect(() => {

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
 const Footer = () => {
@@ -14,63 +13,48 @@ const Footer = () => {
     <footer
       className={`
         ${darkMode ? "bg-black text-gray-300" : "bg-white text-gray-700"}
-        py-3 mt-auto text-sm
+        border-t border-white/10 dark:border-white/20
+        py-2 mt-auto text-xs font-mono backdrop-blur-md
+        shadow-[0_-1px_6px_rgba(255,255,255,0.05)]
       `}
     >
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex flex-col items-center gap-2">
-          <div className="text-center">
-            {/* <p className="text-xs">
-              Made with 🚀 by{" "}
-              <a
-                href="https://www.linkedin.com/in/aradhya-srivastava"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Aradhya Srivastava
-              </a>
-            </p> */}
-
+      <div className="max-w-3xl mx-auto px-4">
+        <div className="flex flex-col items-center gap-1">
+          <div className="text-center opacity-80 tracking-wide">
             <p
               onClick={handleClick}
               className={`
-    mt-1 cursor-pointer select-none transition-all duration-300 text-xs
-    ${clickCount < 2 ? "blur-sm" : "blur-none"}
-    hover:scale-105
-    hidden sm:block
-  `}
+                cursor-pointer select-none transition-all duration-300
+                ${clickCount < 2 ? "blur-sm" : "blur-none"}
+                hover:scale-105 hidden sm:block
+              `}
             >
               Secret: Try pressing ↑ ↑ ↓ ↓ ← → ← →
             </p>
           </div>
 
-          <div className="flex gap-6">
+          <div className="flex gap-4 font-medium">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/aradhya-7-7"
               target="_blank"
               rel="noopener noreferrer"
-              className="transform transition-all duration-300 hover:text-blue-500 hover:scale-110 hover:-translate-y-1"
+              className="hover:scale-105 hover:uppercase transition-all duration-200"
             >
-              GitHub
+              github
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/aradhya08oc01/"
               target="_blank"
               rel="noopener noreferrer"
-              className="transform transition-all duration-300 hover:text-blue-500 hover:scale-110 hover:-translate-y-1"
+              className="hover:scale-105 hover:uppercase transition-all duration-200"
             >
-              LinkedIn
-            </a>
-            <a
-              href="https://twitter.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transform transition-all duration-300 hover:text-blue-500 hover:scale-110 hover:-translate-y-1"
-            >
-              Twitter
+              linkedin
             </a>
           </div>
+
+          <p className="text-[10px] opacity-50 mt-1">
+            &copy; {new Date().getFullYear()} Aradhya Srivastava
+          </p>
         </div>
       </div>
     </footer>
