@@ -10,7 +10,7 @@ const About = () => {
             🚀 Summary
           </h3>
           <p className="text-gray-600 dark:text-gray-300">
-            🚀 Software Engineer | Mechanical Engineer turned Web Wrangler 🔧 | Proficient in React, Node.js, JS ⚙️ | Bridging the gap between machines & machines-that-run-JavaScript 🤖 | 📚 Debugging life one line at a time — always learning, occasionally caffeinated! ☕💻
+            🚀 Software Engineer | Mechanical Engineer turned Web Wrangler 🔧 | Proficient in React.js, Node.js, JS ⚙️ | Bridging the gap between machines & machines-that-run-JavaScript 🤖 | 📚 Debugging life one line at a time — always learning, occasionally caffeinated! ☕
           </p>
         </div>
 
