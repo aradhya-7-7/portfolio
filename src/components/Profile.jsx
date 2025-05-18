@@ -47,7 +47,7 @@ const Profile = () => {
   const profileData = {
     username: "Aradhya Srivastava",
     title: "Full Stack Developer / Problem Solver / Technical Writer",
-    bio: "🚀 Software Engineer | DSA & Web Dev Enthusiast 💻 | Proficient in React, Node.js, JS 🤝 Passionate Problem-Solver | 📚 Always Learning & Innovating! 🌐",
+    bio: "🚀 Software Engineer | Mechanical Engineer turned Web Wrangler 🔧 | Proficient in React, Node.js, JS ⚙️ | Bridging the gap between machines & machines-that-run-JavaScript 🤖 | 📚 Debugging life one line at a time — always learning, occasionally caffeinated! ☕💻",
     website: "<LinkedIn/>",
   };
 
