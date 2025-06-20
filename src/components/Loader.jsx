@@ -7,7 +7,7 @@ const devQuotes = [
   "git commit -m 'Loading awesome stuff'",
   "while(loading) { drink_chai(); }",
   "404: Loading screen not found... JK!",
-  "Converting caffeine to code...",
+  "Converting chai to code...",
   "sudo load --faster",
   "const life = new Promise((resolve, reject) => {...})",
   "// TODO: Add better loading messages"
