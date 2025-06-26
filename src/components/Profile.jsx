@@ -371,7 +371,7 @@ const Profile = () => {
 
                 {/* CodeChef Logo */}
                 <a
-                  href="https://www.codechef.com/users/aradhya77777"
+                  href="https://www.codechef.com/users/aradhya_cchef"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transform hover:scale-110 transition-transform duration-300"
@@ -387,7 +387,7 @@ const Profile = () => {
 
                 {/* LeetCode Logo */}
                 <a
-                  href="https://leetcode.com/u/aradhya610/"
+                  href="https://leetcode.com/u/aradhya_leetcode/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transform hover:scale-110 transition-transform duration-300"
