@@ -1,30 +1,21 @@
 export const projectsData = [
-  // {
-  //   id: 1,
-  //   title: "Live Auction System",
-  //   description: "A real-time auction platform powered by WebSockets, enabling users to bid on items in a fast and dynamic environment with instant updates.",
-  //   thumbnail: "/posts/1.png",
-  //   technologies: ["React", "Node.js", "WebSocket", "MongoDB"],
-  //   links: {
-  //     demo: "https://live-auction-demo.com",
-  //     github: "https://github.com/yourusername/live-auction-system",
-  //   },
-  // },
-  // {
-  //   id: 2,
-  //   title: "Aetherly - Ecommerce Website",
-  //   description: "A fully-featured ecommerce website with product listings, search, cart, payment integration, and admin panel for inventory management.",
-  //   thumbnail: "/posts/2.png",
-  //   technologies: ["Next.js", "TailwindCSS", "Stripe", "MongoDB"],
-  //   links: {
-  //     demo: "https://aetherly.com",
-  //     github: "https://github.com/yourusername/aetherly-ecommerce",
-  //   },
-  // },
+  {
+    id: 2,
+    title: "CI/CD Pipeline with Jenkins, Maven, Docker, and Nexus",
+    description:
+      "A fully automated CI/CD pipeline setup for a Java application. Built using Maven for build management, Docker for containerization, Jenkins for orchestration, and Nexus for artifact storage. This project showcases end-to-end DevOps lifecycle management, including building, testing, packaging, and deployment of a `.jar` file.",
+    thumbnail: "/posts/6.png",
+    technologies: ["Java", "Maven", "Docker", "Jenkins", "Nexus"],
+    links: {
+      demo: "",
+      github: "https://github.com/aradhya-7-7/devops-jar-deployment",
+    },
+  },
   {
     id: 3,
     title: "Portfolio",
-    description: "Personal portfolio website to showcase projects, experiences, blogs, and contact info, built with smooth animations and responsive design.",
+    description:
+      "Personal portfolio website to showcase projects, experiences, blogs, and contact info, built with smooth animations and responsive design.",
     thumbnail: "/posts/3.png",
     technologies: ["React", "Framer Motion", "TailwindCSS"],
     links: {
@@ -35,7 +26,8 @@ export const projectsData = [
   {
     id: 4,
     title: "DevTools - Swiss Army Knife for Coders",
-    description: "DevTools – Swiss Army Knife for Coders is a modern, all-in-one toolkit designed to streamline a developer’s workflow. Packed with essential utilities like formatters, converters, generators, API testers, and design helpers, it offers a clean and responsive interface to boost productivity and simplify everyday coding tasks.",
+    description:
+      "DevTools – Swiss Army Knife for Coders is a modern, all-in-one toolkit designed to streamline a developer’s workflow. Packed with essential utilities like formatters, converters, generators, API testers, and design helpers, it offers a clean and responsive interface to boost productivity and simplify everyday coding tasks.",
     thumbnail: "/posts/4.png",
     technologies: ["React", "Vite", "TailwindCSS"],
     links: {
@@ -46,15 +38,18 @@ export const projectsData = [
   {
     id: 5,
     title: "Help the Fella",
-    description: "A friendly hub where gamers help gamers! Whether you’re stuck in a game, puzzled by eSports settings, or just need quick advice, our community’s got your back. No question is too noob—just ask, fella!",
+    description:
+      "A friendly hub where gamers help gamers! Whether you’re stuck in a game, puzzled by eSports settings, or just need quick advice, our community’s got your back. No question is too noob—just ask, fella!",
     thumbnail: "/posts/5.png",
     technologies: ["React", "Firebase"],
     links: {
       demo: "https://help-the-fella.vercel.app/",
       github: "https://github.com/aradhya-7-7/Help-The-Fella",
     },
-  }
+  },
+  
 ];
+
 
  
  export const experienceData = [
