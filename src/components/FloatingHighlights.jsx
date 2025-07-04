@@ -6,21 +6,19 @@ import {
   FaCode,
   FaServer,
   FaShieldAlt,
+  FaDatabase,
   FaCloud,
   FaTools,
   FaLaptopCode,
+  FaCogs,
 } from "react-icons/fa";
 import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiVite,
-  SiRedux,
+  SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss,
+  SiVite, SiRedux, SiAuth0,
+      SiVercel,
+  SiDocker, SiKubernetes, SiJenkins, SiAnsible, SiApachetomcat, SiCircleci
 } from "react-icons/si";
+
 import { RiLayoutLine } from "react-icons/ri";
 import {
   SiNodedotjs,
@@ -28,12 +26,11 @@ import {
   SiGraphql,
   SiJsonwebtokens,
   SiSocketdotio,
-  SiAuth0,
 } from "react-icons/si";
+
 import { SiMysql, SiMongodb } from "react-icons/si";
 import { TbApi } from "react-icons/tb";
-import { FaDatabase } from "react-icons/fa";
-import { SiFirebase, SiVercel, SiNetlify } from "react-icons/si";
+import { SiFirebase, SiNetlify } from "react-icons/si";
 
 const FloatingHighlights = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -110,6 +107,22 @@ const FloatingHighlights = () => {
        ),
       icon: <FaTools className="w-8 h-8 text-gray-600 dark:text-gray-300" />,
     },
+      {
+    title: "DevOps & CI/CD",
+    text: (
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 justify-items-center">
+        <SiDocker className="w-8 h-8 text-[#2496ED] hover:scale-110 transition-transform" />
+        <SiKubernetes className="w-8 h-8 text-[#326CE5] hover:scale-110 transition-transform" />
+        <SiJenkins className="w-8 h-8 text-[#D24939] hover:scale-110 transition-transform" />
+        <SiAnsible className="w-8 h-8 text-[#EE0000] hover:scale-110 transition-transform" />
+        <SiApachetomcat className="w-8 h-8 text-[#A82713] hover:scale-110 transition-transform" />
+        <SiCircleci className="w-8 h-8 text-[#343434] hover:scale-110 transition-transform" />
+      </div>
+    ),
+    icon: <FaCogs className="w-8 h-8 text-gray-600 dark:text-gray-300" />,
+  },
+
+
     {
       title: "Software Development & Engineering Concepts",
       text: (
